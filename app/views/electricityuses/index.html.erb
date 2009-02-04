@@ -1,0 +1,18 @@
+<h1>Listing electricityuses</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for electricityuse in @electricityuses %>
+  <tr>
+    <td><%= link_to 'Show', electricityuse %></td>
+    <td><%= link_to 'Edit', edit_electricityuse_path(electricityuse) %></td>
+    <td><%= link_to 'Destroy', electricityuse, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New electricityuse', new_electricityuse_path %>

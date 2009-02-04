@@ -1,0 +1,22 @@
+<h2>Adding electricity for the device <%= @device.name %></h2>
+
+<% form_for(@electricityuse) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+  	<p><label for="electricityuse_consumption">Consumption in kW/h</label><br/>
+	<%= text_field 'electricityuse', 'consumption'  %></p>
+	
+	<p><label for="electricityuse_from">From the date:</label><br/>
+	<%= date_select 'electricityuse', 'from'  %></p>
+	
+	  	<p><label for="electricityuse_to">To the date:</label><br/>
+	<%= date_select 'electricityuse', 'to'  %></p>
+	
+	<%= hidden_field "electricityuse", "device", "value" => @device.id %>
+	
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', electricityuses_path %>

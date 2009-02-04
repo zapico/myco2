@@ -1,0 +1,4 @@
+<h1>Users</h1>
+<% for user in @users %>
+	<p><%= link_to user.name, :action=> 'show', :id => user %></p>
+<%end%>

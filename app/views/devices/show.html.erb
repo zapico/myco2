@@ -1,0 +1,13 @@
+<h2><%= @device.name %></h2>
+<p><%= @device.info %></p>
+<h2>Total consumption</h2>
+<% consumptions = @device.electricityuse(:all) %>
+<% total = 0 %>
+<% for cons in consumptions %>
+	<% total = total + cons.consumption %>
+	<p><%= cons.consumption %> kW/h from <%= cons.from%> to <%= cons.to %></p>
+<%end%>
+<p>Total <%= total %> kW/h</p>
+<p><%= link_to 'Add consumption', :controller => 'electricityuses', :action => 'new', :device => @device %></p>
+<%= link_to 'Edit', edit_device_path(@device) %> |
+<%= link_to 'Back', devices_path %>

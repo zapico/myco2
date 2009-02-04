@@ -1,0 +1,21 @@
+<h1>New user</h1>
+<p><%= error_messages_for 'user' %></p>
+<% form_tag do%>
+<p><label for="user_email">Your email (this will be used as login)</label><br/>
+<%= text_field 'user', 'email'  %></p>
+
+<p><label for="user_password">Choose a password</label><br/>
+<%= password_field 'user', 'password'  %></p>
+
+<p><label for="user_password_confirmation">Confirm your password</label><br/>
+<%= password_field 'user', 'password_confirmation'  %></p>
+
+<p><label for="user_name">Name and surname</label><br/>
+<%= text_field 'user', 'name'  %></p>
+
+<p>After registering you can follow the instructions in your account page to upload a profile picture</p>
+
+<%= submit_tag "Create" %> 
+<% end %>
+
+<p><%= link_to 'Cancel', :controller => 'static', :action => 'frontpage' %></p>

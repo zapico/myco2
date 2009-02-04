@@ -1,0 +1,18 @@
+<h2>Welcome <%= @user.name %></h2>
+<h3>Your city</h3>
+<%= @user.city.name %>
+<h3>Your emissions</h3>
+<p>These are all your carbon dioxide emissions. </p>
+
+<% for emission in @emissions %>
+<p><b><%= emission.amount %></b> Kg CO2eq. <%= emission.source.name %> 
+ | <%= link_to 'Show', emission %>
+ | <%= link_to 'Edit', edit_emission_path(emission) %>
+ | <%= link_to 'Destroy', emission, :confirm => 'Are you sure?', :method => :delete %></p>
+<% end %>
+
+<p>Your total emissions are: <%= @total %> Kg. CO2eq.</p>
+
+<br />
+
+<%= link_to 'New emission', new_emission_path %>

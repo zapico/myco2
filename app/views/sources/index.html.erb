@@ -1,0 +1,20 @@
+<h1>Listing sources</h1>
+
+
+<% for source in @sources %>
+<p>-------------------------------------------------</p>
+<p><b><%= source.name  %></b>
+In the city of: <%= source.city.name %></p>
+<p>More info: <%= source.metadata  %></p>
+<p>
+<%= link_to 'Show', source %>
+ | <%= link_to 'Edit', edit_source_path(source) %>
+ | <%= link_to 'Destroy', source, :confirm => 'Are you sure?', :method => :delete %>
+</p>
+<p>-------------------------------------------------</p>
+<% end %>
+
+
+<br />
+
+<%= link_to 'New source', new_source_path %>

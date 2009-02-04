@@ -1,0 +1,28 @@
+<h1>New electricity emission</h1>
+
+<% form_for(@emission) do |f| %>
+  <%= f.error_messages %>
+  <p>For user <%= @user.name %> in the city of <%= @city.name %></p>
+  <p>Using the source <%= @source.name %> with a factor of <%= @source.factor %></p>
+  <p>
+  	<p><label for="emission_amount">Consumption in kW/h</label><br/>
+	<%= text_field 'emission', 'amount'  %></p>
+	
+	<p><label for="emission_from">From the date:</label><br/>
+	<%= date_select 'emission', 'start'  %></p>
+	
+	  	<p><label for="emission_to">To the date:</label><br/>
+	<%= date_select 'emission', 'end'  %></p>
+	
+	  	<p><label for="emission_metadata">Information about this electricity consumption</label><br/>
+	<%= text_area 'emission', 'metadata'  %></p>
+	
+	
+	<%= hidden_field "emission", "user_id", "value" => @user.id %>
+	<%= hidden_field "emission", "source_id", "value" => @source.id %>
+	
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', emissions_path %>

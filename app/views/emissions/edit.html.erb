@@ -1,0 +1,12 @@
+<h1>Editing emission</h1>
+
+<% form_for(@emission) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @emission %> |
+<%= link_to 'Back', emissions_path %>

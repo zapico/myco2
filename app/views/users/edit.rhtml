@@ -1,0 +1,25 @@
+<div id="ideas_right">
+<h3>Editing your information</h3>
+
+<% form_for :user do |form| %>
+<%= error_messages_for 'user' %>
+
+<p><label for="user_email">Your login</label><br/>
+<%= text_field 'user', 'email', :disabled => 'true' %></p>
+
+<p><label for="user_name">Name and surname</label><br/>
+<%= text_field 'user', 'name'  %></p>
+
+<p><label for="user_info">Information about me</label><br/>
+<%= text_area 'user', 'info'  %></p>
+
+<p><label for="user_city">My city</label><br/>
+<p><%= collection_select("user", "city_id" , @cities, "id", "name") %></p>
+
+<br>
+
+<br><%= submit_tag 'Update', :class => 'submit' %>
+<% end %>
+<p><%= link_to 'Show', :action => 'show', :id => @user %>
+| <%= link_to 'Back', :action => 'account' %></p>
+</div>

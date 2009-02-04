@@ -1,0 +1,16 @@
+<h1>Cities</h1>
+
+
+<% for city in @cities %>
+<h2><%= city.name %></h2>  
+  <tr>
+    <td><%= link_to 'Show', city %></td>
+    <td><%= link_to 'Edit', edit_city_path(city) %></td>
+    <td><%= link_to 'Destroy', city, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<br><br>
+<p><%= link_to 'New city', new_city_path %></p>
