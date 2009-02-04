@@ -3,7 +3,7 @@ class CreateSources < ActiveRecord::Migration
     create_table :sources do |t|
       t.integer :city_id
       t.string :name
-      t.decimal :factor
+      t.column :factor, :decimal, { :precision => 10, :scale => 9 }
       t.text :metadata
       t.timestamps
     end

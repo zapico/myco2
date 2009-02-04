@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(:version => 20090202143238) do
   create_table "emissions", :force => true do |t|
     t.integer  "user_id"
     t.integer  "source_id"
-    t.integer  "amount",     :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "amount",     :precision => 10, :scale => 9
     t.text     "metadata"
-    t.date     "start"
-    t.date     "end"
+    t.datetime "start"
+    t.datetime "end"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20090202143238) do
   create_table "sources", :force => true do |t|
     t.integer  "city_id"
     t.string   "name"
-    t.integer  "factor",     :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "factor",     :precision => 10, :scale => 9
     t.text     "metadata"
     t.datetime "created_at"
     t.datetime "updated_at"

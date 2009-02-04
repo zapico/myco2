@@ -3,10 +3,10 @@ class CreateEmissions < ActiveRecord::Migration
     create_table :emissions do |t|
       t.integer :user_id
       t.integer :source_id
-      t.decimal :amount
+      t.column :amount, :decimal, { :precision => 10, :scale => 9 }
       t.text :metadata
-      t.date :start
-      t.date :end
+      t.datetime :start
+      t.datetime :end
       t.timestamps
     end
   end

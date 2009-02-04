@@ -1,6 +1,6 @@
 <h2>Welcome <%= @user.name %></h2>
 <h3>Your city</h3>
-<%= @user.city.name %>
+<%= @user.city.name rescue nil %>
 <h3>Your emissions</h3>
 <p>These are all your carbon dioxide emissions. </p>
 
