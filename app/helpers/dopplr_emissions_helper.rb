@@ -1,0 +1,2 @@
+module DopplrEmissionsHelper
+end

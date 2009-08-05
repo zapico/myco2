@@ -1,0 +1,31 @@
+<div id="content_left">
+<h1>Editing source</h1>
+
+<% form_for(@source) do |f| %>
+  <%= f.error_messages %>
+<p><label for="source_name">Name</label><br/>
+<%= text_field 'source', 'name'  %></p>
+
+<p><label for="source_city">City</label><br/>
+<p><%= collection_select("source", "city_id" , @cities, "id", "name") %></p>
+
+<p><label for="source_name">Category</label><br/>
+<%= select( "source", "category", { "Transport" => "0", "Housing" => "1", "Food" => "2", "Other" => "3"}) %>
+
+<p><label for="source_metadata">Metadata and information</label><br/>
+<%= text_area 'source', 'metadata'  %></p>
+
+<p><label for="source_metadata">Picture URL (Not needed)</label><br/>
+<%= text_field 'source', 'picture'  %></p>
+
+<p><label for="source_factor">Factor. Number that multiplied for activity gives the kg of carbon dioxide equivalent</label><br/>
+<%= text_field 'source', 'factor'  %></p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+</div>
+<div id="content_right">
+<%= link_to 'Show', @source %> |
+<%= link_to 'Back', sources_path %>
+</div>

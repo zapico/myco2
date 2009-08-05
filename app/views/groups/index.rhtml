@@ -1,0 +1,21 @@
+<div id="content_left">
+<h1>Listing groups</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for group in @groups %>
+    
+<p><%= group.name %>    
+ | <%= link_to 'Show', group %>
+ | <%= link_to 'Edit', edit_group_path(group) %>
+ | <%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete %>
+</p>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New group', new_group_path %>
+</div>

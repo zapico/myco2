@@ -1,0 +1,35 @@
+<div id="content_left">
+<h1>New source</h1>
+
+<% form_for(@source) do |f| %>
+  <%= f.error_messages %>
+  
+<p><label for="source_name">Name</label><br/>
+<%= text_field 'source', 'name'  %></p>
+
+<p><label for="source_name">Category</label><br/>
+<%= select( "source", "category", { "Transport" => "0", "Housing" => "1", "Food" => "2", "Other" => "3"}) %>
+
+<p><label for="source_city">City</label><br/>
+<p><%= collection_select("source", "city_id" , @cities, "id", "name") %></p>
+
+<p><label for="source_metadata">Metadata and information</label><br/>
+<%= text_area 'source', 'metadata'  %></p>
+
+<p><label for="source_metadata">Picture URL (Not needed)</label><br/>
+<%= text_field 'source', 'picture'  %></p>
+
+<p><label for="source_factor">Factor. </label><br/>
+<%= text_field 'source', 'factor'  %></p>
+
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+</div>
+<div id="content_right">
+<h3>About creating sources</h3>
+<p>Sources are specific to different cities.</p>
+<p>The factor is a number Number that multiplied for the activity gives the kg of carbon dioxide equivalent. For example, if Kg CO2 per Kw/h or KG CO2 per Km of public transportation.</p>
+<%= link_to 'Cancel and go back', sources_path %>
+</div>

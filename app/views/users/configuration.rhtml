@@ -1,0 +1,39 @@
+<div id="column_one">
+<img src="/images/transport.jpg"><br>
+<p>Daily commuting and flying make up for a big part of our emissions.</p>
+<p><i>1. Available services:</i></p>
+<img src="/images/peir.jpg">
+<p><a href="http://peir.cens.ucla.edu">PEIR</a> is an application from UCLA that uses your mobile phone GPS information for calculate
+your transportation impact</p>
+<p><%= link_to 'Connect with PEIR', new_emission_path %></p>
+
+<img src="/images/dopplr.gif">
+<p><a href="http://dopplr.com">Dopplr</a> is a web application to keep track of your traveling and your peers.</p>
+<p><%= link_to 'Refresh Dopplr', :controller => 'dopplr', :action => 'getdata' %></p>
+<p>Daily commuting and flying make up for a big part of our emissions.</p>
+
+<p><i>2. Add information manually:</i></p>
+<p><%= link_to 'Add trips manually', new_emission_path %></p>
+<p><%= link_to 'Account commuting manually', new_emission_path %></p>
+
+</div>
+
+<div id="column_two">
+<img src="/images/housing.jpg"><br>
+<p>Our sweet home is one of the places where we emit most carbon dioxide.</p>
+<p><i>1. Available services:</i></p>
+<p>Connect with Fortum: coming soon.</p>
+<p><i>2. Add information manually:</i></p>
+<p><%= link_to 'Add Electricity use', new_emission_path %></p>
+</div>
+
+<div id="column_three">
+<img src="/images/food.jpg"><br>
+<p><i>1. Available services:</i></p>
+<p>Connect with ICA: coming soon.</p>
+<p><i>2. Add information manually:</i></p>
+<p><%= link_to 'Configure your food habits', new_emission_path %></p>
+</div>
+
+
+

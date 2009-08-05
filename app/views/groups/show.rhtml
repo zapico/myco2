@@ -1,0 +1,13 @@
+<div id="content_left">
+<h1><%= @group.name%></h1>
+<p><%= @group.info%></p>
+</div>
+<div id="content_right">
+<% if User.find(session[:id]).groups.exists?(:id => @group.id) then %>
+<p>You are a member of this group!</p>
+<% else %>
+<p><%= link_to 'Join', :action => 'join',:id => @group.id %></p>
+<% end %>
+<p><%= link_to 'Edit', edit_group_path(@group) %></p>
+<p><%= link_to 'Back', groups_path %></p>
+</div>

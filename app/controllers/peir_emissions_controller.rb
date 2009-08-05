@@ -1,0 +1,2 @@
+class PeirEmissionsController < ApplicationController
+end
