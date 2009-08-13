@@ -2,6 +2,7 @@ class CreateCities < ActiveRecord::Migration
   def self.up
     create_table :cities do |t|
       t.string :name
+      t.text :info
       t.timestamps
     end
   end

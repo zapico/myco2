@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :groups
+
   map.resources :emissions, :collection => {:new_electricity => :get }
 
   map.resources :sources
@@ -8,8 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :helps
 
   map.resources :statics
-
- 
+  
   map.resources :electricityuses
 
   map.resources :devices
@@ -50,7 +51,9 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  map.root :controller => "users", :action => "profile"
+  map.root :controller => "cities", :action => "info" 
+  
+  map.info 'info', :controller => "cities", :action => "info" 
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,3 +1,9 @@
+# Controller for sources of CO2
+#
+# Jorge L. Zapico 
+# KTH, Centre for Sustainable Communications, 2009
+# www.persuasiveservices.org
+
 class SourcesController < ApplicationController
   # GET /sources
   # GET /sources.xml

@@ -5,31 +5,29 @@
 <head>
 	<link href= "/stylesheets/application.css" rel="stylesheet" type="text/css">
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>My CO2</title>
+  <title>Our CO2</title>
 </head>
 <body>
 <div id="wrapper"><div id="wrapper2">
 <div id="header">
 <br>
-<img src="/images/logo.jpg">
-<h2>
-<%= link_to 'My profile', :controller => 'users', :action => 'profile' %>	
-<%= link_to 'Sources', :controller => 'sources' %>
-<%= link_to 'Users', :controller => 'users' %>	
-<%= link_to 'Cities', :controller => 'cities'%>	
-</h2>
+<img src="/images/logo2.png" border=0>
+<div id="menu">
+<a href="/info"><img src="/images/info.png" border=0></a><br>
+<a href="/users"><img src="/images/users.png" border=0></a><br>
+<a href="/cities"><img src="/images/cities.png" border=0></a><br>
+<a href="/users/profile"><img src="/images/account.png" border=0></a></div>
 </div>
-<p style="color: green"><%= flash[:notice] %></p>
 <div id="content">
 <%= yield  %>
 </div>
-<br><br>
-
-
 <div id="footer">
 <img src="/images/ps.png">
 </div>
 </div>
 </div>
+<div id="top_black"></div>
+
+
 </body>
 </html>

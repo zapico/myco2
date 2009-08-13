@@ -6,6 +6,27 @@ class User < ActiveRecord::Base
   
   belongs_to :city
   has_many :emissions
+  has_many :dopplr_emissions
+  has_and_belongs_to_many :groups
+
+	# Give back CO2 for a given month
+	def self.emissions_month(month,year)
+    
+    
+    # Calculate total CO2
+    dopplremissions = self.dopplr_emissions.find(:all, :condition["date.month = ? && date.year = ?", month, year])
+    
+    total = 0 
+    
+    
+    for emission in dopplremissions
+      total += emission.co2
+    end
+    
+    return total
+
+	end
+
 
     # lookup the user and check the password
     # set user to nil if user doesn’t exist

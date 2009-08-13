@@ -35,18 +35,6 @@ class EmissionsController < ApplicationController
       format.xml  { render :xml => @emission }
     end
   end
-    # GET /emissions/new_electricity
-  def new_electricity
-    @user = User.find(session[:id])
-    @city = @user.city
-    @source = Source.find(:first, :conditions => ["name = 'electricity' AND city_id = ?",@city.id])
-    @emission = Emission.new
-    
-    respond_to do |format|
-      format.html # new_electricity.html.erb
-      format.xml  { render :xml => @emission }
-    end
-  end
 
   # GET /emissions/1/edit
   def edit
@@ -97,5 +85,21 @@ class EmissionsController < ApplicationController
       format.html { redirect_to(emissions_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  
+  # Cron job for gathering all information
+  def fetch_emissions
+  	
+  	# Fetch emissions from Dopplr
+    dopplremissions = @user.dopplr_emissions.find(:all)
+    month = 0
+    
+    for emission in dopplremissions
+      @total += emission.co2
+      if emission.date.year == Time.now.year then @year += emission.co2 end
+      if (emission.date.month == Time.now.month &&  emission.date.year == Time.now.year)then @month += emission.co2 end
+    end
+  
   end
 end

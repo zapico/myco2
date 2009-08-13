@@ -10,6 +10,8 @@ class CitiesController < ApplicationController
     end
   end
 
+  def info
+  end
   # GET /cities/1
   # GET /cities/1.xml
   def show
