@@ -1,4 +1,4 @@
-<div id="ideas_right">
+	
 <h3>Editing your information</h3>
 
 <% form_for :user do |form| %>
@@ -15,6 +15,9 @@
 
 <p><label for="user_city">My city</label><br/>
 <p><%= collection_select("user", "city_id" , @cities, "id", "name") %></p>
+
+<p><label for="user_name">Dopplr Token</label><br/>
+<%= text_field 'user', 'tokendopplr'  %></p>
 
 <br>
 

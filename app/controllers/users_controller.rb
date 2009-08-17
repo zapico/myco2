@@ -115,7 +115,7 @@ end
   end
   
   def configuration
-  
+  @user = User.find(session[:id])
   end
   
   # Password management

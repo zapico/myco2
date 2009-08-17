@@ -1,5 +1,6 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
+require 'digest/sha1'
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
@@ -14,6 +15,23 @@ class ApplicationController < ActionController::Base
           redirect_to(:controller => "users", :action => "login")
      end
   end
+  
+  protected
+  def http_basic_authentication
+        authenticate_or_request_with_http_basic do |email , password|    
+        user = User.find(:first, :conditions => ['email = ?' , email])
+        if user
+            string_to_hash = password + user.password_salt
+            expected_password = Digest::SHA1.hexdigest(string_to_hash)
+            if user.password_hash != expected_password
+                user = nil
+            end
+                
+        end
+        user
+      end
+  end
+  
   # See ActionController::Base for details 
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 

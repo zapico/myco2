@@ -5,19 +5,39 @@
 # www.persuasiveservices.org
 
 class DopplrController < ApplicationController
+
+  # Link Dopplr Account to OurCO2 using API
+  def link
+    url ="http://localhost:3000/dopplr/"
+    redirect_to "https://www.dopplr.com/api/AuthSubRequest?scope=http://www.dopplr.com&next="+url+"&session=1"
+  end
+  
+  def index 
+    # Save the token in the user
+    if (params[:token]) then
+       
+       d = Dopplr.new
+       d.set_token(params[:token])
+
       
+       @user = User.find(session[:id])
+       @user.tokendopplr = params[:token].to_s
+       @user.update_attributes(params[:user])
+       @token = params[:token].to_s
+   
+    end
+  end
   
   # Grabs the data from Dopplr and writes in the db for dopplr_emissions
   def getdata
+    
+    user = User.find(session[:id])
       
-      # Connecting with dopplr and creating session
-      d = Dopplr.new
-      puts d.login_url("http://localhost:3000/dopplr/")
-      d.set_token('b67fa9cd35c665e6fd20ed32533b4bae')
-      session = d.upgrade_to_session
-      d.set_token(session)
-	  
-	  
+    # Connecting with dopplr and creating session    
+    d = Dopplr.new
+    d.set_token(user.tokendopplr)
+    session = d.upgrade_to_session
+    d.set_token(session)
 	  
 	  # Getting the XML with all the trips and iterating by trip
 	  d.trips_info['trip'].each do |trip|
@@ -31,7 +51,7 @@ class DopplrController < ApplicationController
 		# Add trip id
 		emission.trip = trip['id']
 		# Add user id
-		emission.user_id = 2
+		emission.user_id = user.id
 		
 		
 		# Get the coordinates of the startpoint based on the position of the day before traveling
@@ -182,13 +202,13 @@ class DopplrController < ApplicationController
 	  end	  
 	  #finish each
 	  end
-	  redirect_to :controller => user, action => "profile"
+	  redirect_to :controller => user, :action => "profile"
 	  
   #finish getdata    
   end
   
   # Index shows the details but it doesn't save the trips in the database.
-  def index
+  def index_old
       
       # Connecting with dopplr and creating session
       d = Dopplr.new

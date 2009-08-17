@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :city_id
       t.text :password_salt
       t.text :password_hash
+      t.integer :dopplrtoken
       t.timestamps
     end
   end

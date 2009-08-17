@@ -10,7 +10,7 @@ your transportation impact</p>
 <img src="/images/dopplr.gif">
 <p><a href="http://dopplr.com">Dopplr</a> is a web application to keep track of your traveling and your peers.</p>
 <p><%= link_to 'Refresh Dopplr', :controller => 'dopplr', :action => 'getdata' %></p>
-<p>Daily commuting and flying make up for a big part of our emissions.</p>
+<p><%= link_to 'Link your Dopplr account', :controller => 'dopplr', :action => 'link' %></p>
 
 <p><i>2. Add information manually:</i></p>
 <p><%= link_to 'Add trips manually', new_emission_path %></p>

@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
     return total
 
 	end
-
+    
 
     # lookup the user and check the password
     # set user to nil if user doesn’t exist
