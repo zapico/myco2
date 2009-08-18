@@ -16,5 +16,7 @@
 <div id="content_right">
 <%= gravatar(@user.email)%><br>
 <p><%= @user.name %> at <%= @user.city.name rescue nil %></p>
-<p><%= link_to 'Configuration', :action=> 'configuration'%></p>
+<p><%= link_to 'Edit your sevices', :action=> 'configuration'%></p>
+<p><%= link_to 'Edit your info', :action=> 'edit'%></p>
+<p><%= link_to 'Logout', :action=> 'logout'%></p>
 </div>

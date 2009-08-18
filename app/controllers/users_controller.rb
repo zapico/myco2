@@ -62,7 +62,7 @@ class UsersController < ApplicationController
 
   def edit
       flash[:notice] = ""
-      @user = User.find(params[:id])
+      @user = User.find(session[:id])
       @cities = City.find(:all)
       if request.post? and @user.update_attributes(params[:user])
               redirect_to :action => 'profile'

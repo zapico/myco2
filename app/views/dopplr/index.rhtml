@@ -1,6 +1,6 @@
 <div id="content_left">
 <h1>DOPPLR</h1>
-<p>Dopplr is a travel service.</p>
-<h1>YOUR SUSTAINABLE INDEX</h1>
-<p> <%= @user.name %> Your token: <%= @token %> </p>
+<p>Thanks <%= @user.name %>, your Dopplr account is now linked to OurCO2.</p>
+<p><%= link_to 'Back to your profile', :action=> 'profile'%></p>
+<p><%= link_to 'Back to your profile', :action=> 'upgrade'%></p>
 </div>
