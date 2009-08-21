@@ -1,15 +1,19 @@
 <div id="content_left">
 
 <h1>Users</h1>
-<p>The people using MyCO2</p>
-<% for user in @users %>
-	<% total = 0 %>
-	<% for emission in user.emissions.find(:all) %>
-      <% total += emission.amount %>
-    <% end %>
-    <%= gravatar(user.email)%>
-	<p><b><%= user.name %></b>: <%= total %>kg</p>
-	<p>---------------------------------------------</p>
-<%end%>
 
+<p>The people using MyCO2</p>
+<div id="user_index">
+<ul>
+<% for user in @users %>
+
+	<li>
+	<%= gravatar(user.email)%>
+	<p><b><%= user.name %></b>:</p>
+	<h2> <%= total_co2(user.id).round  %> kg</h2>
+	</li>
+
+<%end%>
+</ul>
+</div>
 </div>

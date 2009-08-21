@@ -2,17 +2,30 @@
 <h1>Cities</h1>
 <p>My CO2 is city specific, this is due to keeping a high quality in the environmental data. The locations available right now are:</p>
 
-<% for city in @cities %>
-<h2><%= city.name %></h2>  
-  <tr>
-    <td><%= link_to 'Show', city %></td>
-    <td><%= link_to 'Edit', edit_city_path(city) %></td>
-    <td><%= link_to 'Destroy', city, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
+<% for city in @cities %>
+<div id="user_index">
+<h1><%= city.name %></h1>
+<p><%= city.info %></p>
+<% if city.users.count > 0 then %> 
+	<p>Users in this city: </p>
+	<ul>
+	<% for user in city.users %>
+	
+		<li>
+		<%= gravatar(user.email)%>
+		<p><b><%= user.name %></b>:</p>
+		<h2> <%= total_co2(user.id).round  %> kg</h2>
+		</li>
+
+	<% end %>
+	</ul>
+<% end %>
+
+</div><br/>
+
+<% end %>
+
+
 <br><br>
-<p><%= link_to 'New city', new_city_path %></p>
 </div>

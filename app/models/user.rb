@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   
   belongs_to :city
   has_many :emissions
+   has_many :goals
   has_many :dopplr_emissions
   has_and_belongs_to_many :groups
 

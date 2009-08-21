@@ -98,6 +98,18 @@ body {
     background:#fff;
     padding-left: 35px;
 }
+#user_index {
+	float: left	;  
+	left: 0px;
+	top: 5px;
+  	padding-top: 0px;
+}
+#user_index ul li {
+  font-size: 12px;
+  list-style: none;
+  float: left;
+  padding-right: 20px;
+}
 
 body, p, ol, ul, td {
 	font: 100%/1.2 Gill-sans,Arial, Helvetica, sans-serif;

@@ -1,0 +1,25 @@
+<div id="content_left">
+<h1 class="welcome">Do your best!</h1>
+<br><br>
+
+<% if @goals.count > 0 then %>
+<h1>Your actual goals</h1>
+<% @goals.each do |goal| %>
+	<p><%= goal.description %></p>
+<%end%>
+<%else%>
+<p> You don't have any goal yet. Look at the challenges below and do your best to reduce your emissions!
+<%end%>
+
+<h1>Select a challenge!</h1>
+<p>1. Bike one day to work this week. <%= link_to "Set goal", :action => 'new', :goal_id => '1' %> </p>
+<p>2. Do not fly in two months. <%= link_to "Set goal", :action => 'new', :goal_id => '2' %></p>
+<p>3. Reduce my carbon dioxide emissions a 20% from my actual baseline. <%= link_to "Set goal", :action => 'new', :goal_id => '3' %></p>
+<p>4. Reach or keep a sustainable level of emissions. <%= link_to "Set goal", :action => 'new', :goal_id => '4' %></p>
+<br />
+</div>
+
+<div id="content_right">
+<p>Other users are doing:</p>
+
+</div>

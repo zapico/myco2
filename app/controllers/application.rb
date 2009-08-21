@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   end
   
   protected
+  
   def http_basic_authentication
         authenticate_or_request_with_http_basic do |email , password|    
         user = User.find(:first, :conditions => ['email = ?' , email])

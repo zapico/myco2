@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :goals
+
   map.resources :groups
 
   map.resources :emissions, :collection => {:new_electricity => :get }
