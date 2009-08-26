@@ -50,7 +50,7 @@ class DopplrController < ApplicationController
 		
 		
 		# Check if that trip already exist 
-		if DopplrEmission.find(:first, :conditions => ["trip = ?", trip.id ]) == nil then
+		if DopplrEmission.find(:first, :conditions => ["date = ?", trip.start.to_date ]) == nil then
 		
 		# Create a new emission
 		emission = DopplrEmission.new
@@ -63,16 +63,21 @@ class DopplrController < ApplicationController
 		# Get the coordinates of the startpoint based on the position of the day before traveling
 		startdate = trip.start.to_date - 1.day
 		startplace = client.get('location_on_date', :date => startdate)['location']
+
 		
 		if startplace['trip'] != nil
 			lat = startplace['trip']['city']['latitude']
 			long = startplace['trip']['city']['longitude']
 			namestart = startplace['trip']['city']['name']
+			
 		else
 			lat = startplace['home']['latitude']
 			long = startplace['home']['longitude']
 			namestart = startplace['home']['name']
 		end
+		
+		emission.from = namestart
+		emission.to = trip.city.name
 		
 		# Calculate the distance in km based in Km based on the latitude and longitude
 		dLat = 3.141592653589793238462643383298 * (trip.city.latitude - lat) / 180
@@ -154,10 +159,13 @@ class DopplrController < ApplicationController
 		  
 		  if namestart != ""
 		    
-		
+		 
 			lat = trip.city.latitude
 			long = trip.city.longitude
 			namestart = trip.city.name
+			
+
+			
 			
 			# Create a new emission
 		    returnemission = DopplrEmission.new
@@ -173,6 +181,8 @@ class DopplrController < ApplicationController
 			long = trip.city.longitude
 			namestart = trip.city.name
 			
+			returnemission.from = namestart
+  		returnemission.to = namefinish
 			
 			# ReCalculate the distance in km based in Km based on the latitude and longitude
 			dLat = 3.141592653589793238462643383298 * (latfinish - lat) / 180
