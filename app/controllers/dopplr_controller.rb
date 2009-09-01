@@ -5,7 +5,8 @@
 # www.persuasiveservices.org
 
 class DopplrController < ApplicationController
-  
+  before_filter :authorize, :only => [:link]
+ 
   require 'dopplr'
   
   # Link Dopplr Account to OurCO2 using API
@@ -38,7 +39,7 @@ class DopplrController < ApplicationController
   # Grabs the data from Dopplr and writes in the db for dopplr_emissions
   def getdata
     
-    user = User.find(session[:id])
+    user = User.find(params[:id])
       
     # Connecting with dopplr and creating session    
     client = Dopplr::Client.new

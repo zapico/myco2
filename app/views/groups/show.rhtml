@@ -1,13 +1,31 @@
 <div id="content_left">
-<h1><%= @group.name%></h1>
+<h1 class="welcome"><%= @group.name%></h1>
 <p><%= @group.info%></p>
-</div>
-<div id="content_right">
+<br/>
+<h1>Members</h1>
 <% if User.find(session[:id]).groups.exists?(:id => @group.id) then %>
 <p>You are a member of this group!</p>
 <% else %>
 <p><%= link_to 'Join', :action => 'join',:id => @group.id %></p>
 <% end %>
-<p><%= link_to 'Edit', edit_group_path(@group) %></p>
-<p><%= link_to 'Back', groups_path %></p>
+<div id="user_index">
+<ul>
+<% @group.users.each do |user| %>
+
+	<li>
+	<%= gravatar(user.email)%>
+	<p><b><%= user.name %></b></p>
+	</li>
+
+<%end%>
+</ul>
+</div>
+</div>
+<div id="content_right">
+	<h1>Total impact of this group:</h1>
+	<h2><co2><%= @month.round %></co2><br> Kg. CO2eq. this month.</h2>
+	<h2><co2><%= @year.round %></co2><br> Kg. CO2eq. this year.</h2>
+	<h2><co2><%= @total.round %></co2><br> Kg. CO2eq. in total.</h2>
+	<br><br>
+	<p><%= link_to "See group emissions", :action=> 'emissions', :id => @group.id %></p>
 </div>

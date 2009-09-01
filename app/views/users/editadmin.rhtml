@@ -1,0 +1,30 @@
+<div id="content_left">	
+<h3>Editing user information</h3>
+
+<% form_for :user do |form| %>
+<%= error_messages_for 'user' %>
+
+<p><label for="user_email">Your login</label><br/>
+<%= text_field 'user', 'email', :disabled => 'true' %></p>
+
+<p><label for="user_name">Name and surname</label><br/>
+<%= text_field 'user', 'name'  %></p>
+
+<p><label for="user_info">Information about me</label><br/>
+<%= text_area 'user', 'info'  %></p>
+
+<p><label for="user_city">My city</label><br/>
+<p><%= collection_select("user", "city_id" , @cities, "id", "name") %></p>
+
+<% if @user.tokendopplr != nil %>
+<p>Dopplr is connected</p>
+<%= link_to 'Refresh data', :controller => 'dopplr' ,:action => 'getdata', :id => @user %>
+<% end  %>
+
+<br>
+
+<br><%= submit_tag 'Update', :class => 'submit' %>
+<% end %>
+<p><%= link_to 'Show', :action => 'show', :id => @user %>
+| <%= link_to 'Back', :action => 'account' %></p>
+</div>

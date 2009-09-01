@@ -5,6 +5,8 @@
 # www.persuasiveservices.org
 
 class SourcesController < ApplicationController
+  before_filter :authorize_admin
+  
   # GET /sources
   # GET /sources.xml
   def index

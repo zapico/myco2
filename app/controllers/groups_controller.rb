@@ -1,4 +1,13 @@
+# Controller for groups
+#
+# Jorge L. Zapico 
+# KTH, Centre for Sustainable Communications, 2009
+# www.sustainablecommunications.org
+
 class GroupsController < ApplicationController
+  before_filter :authorize, :only => [:emissions]
+  before_filter :authorize_admin, :only => [:new, :edit, :destroy]
+
   # GET /groups
   # GET /groups.xml
   def index
@@ -12,22 +21,36 @@ class GroupsController < ApplicationController
 
   # GET /groups/1
   # GET /groups/1.xml
+  # Main page for the group
   def show
     @group = Group.find(params[:id])
-
+    @year = 0
+    @month = 0
+    @total = 0
+    
+    for emission in @group.dopplr_emissions
+        @total += emission.co2
+        if emission.date.year == Time.now.year then @year += emission.co2 end
+        if (emission.date.month == Time.now.month &&  emission.date.year == Time.now.year)then @month += emission.co2 end
+    end
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @group }
     end
   end
   
+  # Detailed list of group emissions
+  def emissions
+    @group = Group.find(params[:id])
+    @dopplremissions = @group.dopplr_emissions
+  end
+  
    # Join the active user to the group
    def join
     group = Group.find(params[:id])
-	thisuser = User.find(session[:id])
-	
-	group.users<<thisuser
-	
+	  thisuser = User.find(session[:id])
+	  group.users<<thisuser
     redirect_to :action => 'show', :id => group
 
   end

@@ -1,4 +1,6 @@
 class CitiesController < ApplicationController
+  before_filter :authorize_admin, :only => [:new, :destroy, :edit]  
+ 
   # GET /cities
   # GET /cities.xml
   def index

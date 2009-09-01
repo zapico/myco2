@@ -1,6 +1,6 @@
 <div id="content_left">
 
-<h1>Users</h1>
+<h1 class="welcome">Users</h1>
 
 <p>The people using MyCO2</p>
 <div id="user_index">
@@ -16,4 +16,10 @@
 <%end%>
 </ul>
 </div>
+</div>
+<div id="content_right">
+	<h1 class="welcome">Groups</h1>
+	<% Group.find(:all).each do |g| %>
+	<p><%= link_to g.name, :controller=> "groups",:action=> 'show', :id => g.id %></p>
+	<%end %>	
 </div>

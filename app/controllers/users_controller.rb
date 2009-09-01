@@ -6,15 +6,7 @@
 
 class UsersController < ApplicationController
   before_filter :authorize, :only => [:edit, :destroy, :account, :changepassword, :profile]
-  before_filter :login_required, :only => [:delete, :resetpassword, :adminpasswords]
-
-  
-  def login_required
-    unless session[:id] && User.find(session[:id]).id == 2
-      redirect_to(:controller => "users", :action => "login")
-    end
-  end
-  
+  before_filter :authorize_admin, :only => [:list, :delete, :resetpassword, :adminpasswords, :editadmin]
   
     def login
       reset_session
@@ -50,6 +42,7 @@ class UsersController < ApplicationController
     redirect_to :action => 'adminpasswords'
   end
   
+  # Create a new user
   def new
     @user = User.new(params[:user])
     if request.post? and @user.save
@@ -60,6 +53,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Editing your own profile
   def edit
       flash[:notice] = ""
       @user = User.find(session[:id])
@@ -69,11 +63,25 @@ class UsersController < ApplicationController
       end
   end
   
+  # Edit page for admin
+  def editadmin
+      flash[:notice] = ""
+      @user = User.find(params[:id])
+      @cities = City.find(:all)
+      if request.post? and @user.update_attributes(params[:user])
+              redirect_to :action => 'list'
+      end
+  end
+  
   def adminpasswords
-end
+  end
+  
+  # Index showing all users
   def index
     @users = User.find(:all)
   end
+  
+  # List with user for administration purposes
   def list
     @users = User.find(:all)
   end
@@ -112,6 +120,16 @@ end
     
     @history="http://chart.apis.google.com/chart?chs=450x200&amp;cht=bvg&amp;chd=t:"+month6.to_s+","+month5.to_s+","+month4.to_s+","+month3.to_s+","+month2.to_s+","+@month.to_s+"&chds=0,5000&amp;chm=N,000000,0,-1,11&amp;chco=4D89F9"
   
+  end
+  
+  # Detailed emissions
+  def emissions
+    @user = User.find(session[:id])
+    
+    # Take dopplremissions
+    @dopplremissions = @user.dopplr_emissions.find(:all, :order => "date DESC")
+    @groups = @user.groups
+    
   end
   
   def configuration

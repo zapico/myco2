@@ -11,7 +11,7 @@ your transportation impact</p>
 <p><a href="http://dopplr.com">Dopplr</a> is a web application to keep track of your traveling and your peers.</p>
 <% if @user.tokendopplr then %>
 	<p>You have already linked your Dopplr account. <%= link_to 'Want to reset it?', :controller => 'dopplr', :action => 'link' %></p>
-	<p><%= link_to 'Refresh Dopplr', :controller => 'dopplr', :action => 'getdata' %></p>
+	<p><%= link_to 'Refresh Dopplr', :controller => 'dopplr', :action => 'getdata', :id => @user %></p>
 <%else%>
 <p><%= link_to 'Link your Dopplr account', :controller => 'dopplr', :action => 'link' %></p>
 <%end%>

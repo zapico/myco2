@@ -25,5 +25,10 @@ class GetCo2Controller < ApplicationController
       end
       
     end
+    
+    #XML with co2 information of all users
+    def all_users
+      
+    end
 
 end

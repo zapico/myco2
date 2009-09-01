@@ -16,6 +16,13 @@ class ApplicationController < ActionController::Base
      end
   end
   
+  def authorize_admin
+     unless User.find_by_id(session[:id]).id == 5
+          flash[:notice] = "Please log in"
+          redirect_to(:controller => "users", :action => "profile")
+     end
+  end
+  
   protected
   
   def http_basic_authentication

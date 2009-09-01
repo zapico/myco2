@@ -16,7 +16,19 @@
 <div id="content_right">
 <%= gravatar(@user.email)%><br>
 <p><%= @user.name %> at <%= @user.city.name rescue nil %></p>
+
+<br><h2>My groups</h2>
+<% @user.groups.each do |g| %>
+<p><%= link_to g.name, :controller=> "groups",:action=> 'show', :id => g.id %></p>
+<%end %>
+
+<br><h2>My emissions</h2>
+<p><%= link_to 'Show detailed emissions', :action=> 'emissions'%></p>
+
+<br><h2>Admin</h2>
 <p><%= link_to 'Edit your sevices', :action=> 'configuration'%></p>
 <p><%= link_to 'Edit your info', :action=> 'edit'%></p>
 <p><%= link_to 'Logout', :action=> 'logout'%></p>
+
+
 </div>

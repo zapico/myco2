@@ -1,4 +1,7 @@
 class GoalsController < ApplicationController
+  before_filter :authorize
+  before_filter :authorize_admin
+
   # GET /goals
   # GET /goals.xml
   def index

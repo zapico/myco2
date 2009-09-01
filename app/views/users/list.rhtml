@@ -1,4 +1,6 @@
-<h1>Users</h1>
+<div id="content_left">
+<h1>User administration</h1>
 <% for user in @users %>
-	<p><%= link_to user.name, :action=> 'show', :id => user %></p>
+	<p><%= link_to user.name, :action=> 'editadmin', :id => user %></p>
 <%end%>
+</div>

@@ -1,0 +1,15 @@
+<div id="content_left">
+<h1 class="welcome"><%= @group.name %>'s emissions</h1>
+<br/>
+<% @dopplremissions.each do |d| %>
+
+	<p><b><%= d.user.name %></b> travelled from <b><%= d.from %></b> to <b><%= d.to %></b> the <%= d.date %></p>
+	<h2><co2><%= d.co2.round %></co2> Kg. CO2eq.</h2>
+	<br/>
+
+<% end %>
+
+</div>
+<div id="content_right">
+<p><%= link_to 'Back to group', :action=> 'show', :id => @group.id %></p>
+</div>
