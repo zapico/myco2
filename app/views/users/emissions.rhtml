@@ -1,6 +1,16 @@
 <div id="content_left">
 <h1 class="welcome">Your emissions</h1>
 <br/>
+<h1>Commuting:</h1>
+<% @peiremissions.each do |p| %>
+
+	<p><b><%= p.km %></b> km trip the <%= p.date %> by <%= p.source.name %></p>
+	<h2><co2><%= p.co2.round %></co2> Kg. CO2eq.</h2>
+	<p><%= link_to 'Edit', :controller => 'peir_emissions', :action=> 'edit', :id => p.id %></p>
+	<br/><br/>
+
+<% end %>
+
 <h1>Traveling:</h1>
 <% @dopplremissions.each do |d| %>
 

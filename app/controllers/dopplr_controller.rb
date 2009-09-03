@@ -11,7 +11,7 @@ class DopplrController < ApplicationController
   
   # Link Dopplr Account to OurCO2 using API
   def link
-    url ="http://localhost:3000/dopplr/"
+    url ="http://ourco2.org/dopplr/"
     redirect_to "https://www.dopplr.com/api/AuthSubRequest?scope=http://www.dopplr.com&next="+url+"&session=1"
   end
   
@@ -21,7 +21,7 @@ class DopplrController < ApplicationController
     if (params[:token]) then
        
        client = Dopplr::Client.new
-       client.login_url "http://localhost:3000/dopplr/"
+       client.login_url "http://ourco2.org/dopplr/"
        client.token = params[:token]
        
        # Transform into a session

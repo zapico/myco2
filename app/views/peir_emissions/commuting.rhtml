@@ -1,0 +1,44 @@
+<div id="content_left">
+<h1 class="welcome">My commuting</h1>
+<br>
+
+<h2><co2><%= @month %></co2> Kg. CO2eq. this month.</h2>
+<h2><co2><%= @year.round %></co2> Kg. CO2eq. this year.</h2>
+<h2><co2><%= @total.round %></co2> Kg. CO2eq. in total.</h2>
+
+<h1>My commuting habits:</h1>
+<% @habits.each do |h| %>
+	<p><b><%= h.km %></b> km <%= habit_to_s(h) %>  by <%= h.source.name %></p>
+	<h2><co2><%= h.co2.round %></co2> Kg. CO2eq.</h2>
+	<p><%= link_to 'Edit', :controller => 'peir_emissions', :action=> 'edit', :id => h.id %></p>
+	<br/><br/>
+<%end%>
+<h1>Other commuting trips:</h1>
+<% @other.each do |o| %>
+	<p><b><%= o.km %></b> km the <%= o.date %>  by <%= o.source.name %></p>
+	<h2><co2><%= o.co2 %></co2> Kg. CO2eq.</h2>
+	<p><%= link_to 'Edit', :controller => 'peir_emissions', :action=> 'edit', :id => o.id %></p>
+	<br/><br/>
+<%end%>
+
+<br />
+</div>
+<div id="content_right">
+<%= gravatar(@user.email)%><br>
+<p><%= @user.name %> at <%= @user.city.name rescue nil %></p>
+
+<br><h2>My groups</h2>
+<% @user.groups.each do |g| %>
+<p><%= link_to g.name, :controller=> "groups",:action=> 'show', :id => g.id %></p>
+<%end %>
+
+<br><h2>My emissions</h2>
+<p><%= link_to 'Show detailed emissions', :action=> 'emissions'%></p>
+
+<br><h2>Admin</h2>
+<p><%= link_to 'Edit your sevices', :action=> 'configuration'%></p>
+<p><%= link_to 'Edit your info', :action=> 'edit'%></p>
+<p><%= link_to 'Logout', :action=> 'logout'%></p>
+
+
+</div>

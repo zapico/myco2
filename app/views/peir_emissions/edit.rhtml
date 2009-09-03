@@ -1,0 +1,33 @@
+<div id="content_left">
+<h1>Edit commuting trip</h1>
+
+<% form_for(@peir_emission) do |f| %>
+  <%= f.error_messages %>
+  <p>For user <%= @user.name %> in the city of <%= @user.city.name %></p>
+  <p>
+  	<p><label for="emission_amount">Km</label><br/>
+	<%= text_field 'peir_emission', 'km'  %></p>
+	
+	<p><label for="emission_amount">Transportation mode</label><br/>
+	<%= select( "peir_emission", "source_id", { "Walking or Biking" => "16", "Car" => "7", "Subway or Train" => "14", "Bus" => "15"}) %></p>
+	
+	<p><label for="emission_from">Date</label><br/>
+	<%= date_select 'peir_emission', 'date'  %></p>
+	
+	<p><label for="emission_from">Repeat</label><br/>
+	<%= select( "peir_emission", "habit", { "Never" => "0", "Everyday" => "1", "On weekdays" => "2", "Once a week" => "3"}) %></p>
+		
+	<p><label for="emission_metadata">More information</label><br/>
+	<%= text_area 'peir_emission', 'metadata'  %></p>
+	
+	<%= hidden_field "peir_emission", "user_id", "value" => @user.id %>
+	
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+</div>
+<div id="content_right">
+	<h2>Help</h2>
+	<p>You can calculate the km at: <a href="http://maps.google.se" target="_blank">Google maps</a></p>	
+</div>

@@ -33,6 +33,7 @@ body {
 #menu{
 	position: absolute;
 	float:right;
+	width: 400px;
 	left: 400px;
 	top: 40px;
 }
@@ -42,8 +43,9 @@ body {
 	background-color: #fff;
 	overflow: hidden;
 	position: relative;
-	padding-top: 30px;
-	padding-bottom: 27px;
+	padding-top: 25px;
+	padding-bottom: 30px;
+
 }
 #top_black{
     position: relative;
@@ -55,6 +57,7 @@ body {
 }
 	
 #content{
+	position: relative;
 	width:100%;
 	height: auto;
 	top: 8px;
@@ -73,10 +76,12 @@ body {
 	padding-right: 40px;
 	float:right;
 	background:#fff;
-	text-align: centered;
+	text-align: center;
 }
 #column_one {
+	position: relative;
 	width:250px;
+	height: auto;
 	margin-top: 8px;
 	float:left;
     background:#fff;
@@ -84,6 +89,7 @@ body {
 }
 	
 #column_two {
+	position: relative;
 	width:250px;
 	margin-top: 8px;
 	float:left;
@@ -92,6 +98,8 @@ body {
 }
 
 #column_three {
+	position: relative;
+	height: auto;
 	width:250px;
 	margin-top: 8px;
 	float:left;
@@ -99,13 +107,16 @@ body {
     padding-left: 35px;
 }
 #user_index {
-	float: left	;  
+	float: left;
+	height: auto;
+	width: 500px;  
 	left: 0px;
 	top: 5px;
   	padding-top: 0px;
 }
 #user_index ul li {
   font-size: 12px;
+  width: 100px;
   list-style: none;
   float: left;
   padding-right: 20px;
@@ -149,9 +160,9 @@ pre {
   font-size: 11px;
 }
 
-a { color: #000; }
-a:visited { color: #666; }
-a:hover { color: #333; }
+a { color: #000;  }
+a:visited { color: #666; background: #fff;}
+a:hover { color: #333; background: #fff;}
 
 .fieldWithErrors {
   padding: 2px;
@@ -165,7 +176,6 @@ a:hover { color: #333; }
   padding: 7px;
   padding-bottom: 12px;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
 }
 
 #errorExplanation h2 {
@@ -187,5 +197,15 @@ a:hover { color: #333; }
 #errorExplanation ul li {
   font-size: 12px;
   list-style: square;
+}
+
+#column_two ul {
+  font-size: 12px;
+  padding-bottom: 12px;
+  list-style: disc outside;
+}
+#column_two li {
+ right:0px;
+ padding-bottom: 12px;
 }
 

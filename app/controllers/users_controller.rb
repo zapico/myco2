@@ -127,6 +127,7 @@ class UsersController < ApplicationController
     @user = User.find(session[:id])
     
     # Take dopplremissions
+    @peiremissions = @user.peir_emissions.find(:all, :order => "date DESC")
     @dopplremissions = @user.dopplr_emissions.find(:all, :order => "date DESC")
     @groups = @user.groups
     

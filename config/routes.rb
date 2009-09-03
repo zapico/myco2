@@ -20,6 +20,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :electricityuses
 
   map.resources :devices
+  
+  map.resources :peir_emissions
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -56,6 +58,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "cities", :action => "info" 
   
   map.info 'info', :controller => "cities", :action => "info" 
+  map.info 'commuting', :controller => "peir_emissions", :action => "commuting" 
 
   # See how all your routes lay out with "rake routes"
 
