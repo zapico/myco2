@@ -119,6 +119,42 @@ class UsersController < ApplicationController
     @grafico="http://chart.apis.google.com/chart?chs=250x150&amp;cht=bvg&amp;chd=t:"+@year.round.to_s+","+@month.round.to_s+"|5600,460&chds=0,10000,0,10000&amp;chco=4D89F9,C6D9FD"
     
     @history="http://chart.apis.google.com/chart?chs=450x200&amp;cht=bvg&amp;chd=t:"+month6.to_s+","+month5.to_s+","+month4.to_s+","+month3.to_s+","+month2.to_s+","+@month.to_s+"&chds=0,5000&amp;chm=N,000000,0,-1,11&amp;chco=4D89F9"
+    
+  
+  end
+  
+  
+  # Main page for user profile
+  def carbonto
+    @user = User.find(session[:id])
+    
+    # Calculate total CO2
+    dopplremissions = @user.dopplr_emissions.find(:all)
+    
+    @total = 0 
+    @year = 0
+    @month = 0
+
+    
+    for emission in dopplremissions
+      @total += emission.co2
+      if emission.date.year == Time.now.year then @year += emission.co2 end
+      if (emission.date.month == Time.now.month &&  emission.date.year == Time.now.year)then @month += emission.co2 end
+    end
+    
+  
+    beer = Net::HTTP.get(URI.parse("http://carbon.to/beers.json?co2="+@year.round.to_s))
+    
+    beer = ActiveSupport::JSON.decode(beer)
+    
+    @beeramount = beer["conversion"]["amount"]
+    
+    laptop = Net::HTTP.get(URI.parse("http://carbon.to/laptop.json?co2="+@year.round.to_s))
+    
+    laptop = ActiveSupport::JSON.decode(laptop)
+    
+    @laptopamount = laptop["conversion"]["amount"]
+    
   
   end
   

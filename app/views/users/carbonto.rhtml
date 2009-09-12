@@ -1,0 +1,33 @@
+<div id="content_left">
+<h1 class="welcome">Hi <%= @user.name %>, you are traveling too much..</h1>
+<br>
+
+<h2><co2><%= @month.round %></co2> Kg. CO2eq. this month.</h2>
+<p>Your monthly emissions are equivalent to: <p/><h2><co2><%= @beeramount %></co2> bottles of beer</h2>
+<br><br>
+<h2><co2><%= @year.round %></co2> Kg. CO2eq. this year.</h2>
+<p>Your emissions this year are equivalent to:<p/><h2><co2><%= @laptopamount %></co2> hours of laptop usage</h2>
+
+<h2>Conversions thanks to carbon.to</h2>
+
+<br />
+</div>
+<div id="content_right">
+<%= gravatar(@user.email)%><br>
+<p><%= @user.name %> at <%= @user.city.name rescue nil %></p>
+
+<br><h2>My groups</h2>
+<% @user.groups.each do |g| %>
+<p><%= link_to g.name, :controller=> "groups",:action=> 'show', :id => g.id %></p>
+<%end %>
+
+<br><h2>My emissions</h2>
+<p><%= link_to 'Show detailed emissions', :action=> 'emissions'%></p>
+
+<br><h2>Admin</h2>
+<p><%= link_to 'Edit your sevices', :action=> 'configuration'%></p>
+<p><%= link_to 'Edit your info', :action=> 'edit'%></p>
+<p><%= link_to 'Logout', :action=> 'logout'%></p>
+
+
+</div>
