@@ -27,11 +27,32 @@ class GroupsController < ApplicationController
     @year = 0
     @month = 0
     @total = 0
-    
-    for emission in @group.dopplr_emissions
-        @total += emission.co2
-        if emission.date.year == Time.now.year then @year += emission.co2 end
-        if (emission.date.month == Time.now.month &&  emission.date.year == Time.now.year)then @month += emission.co2 end
+    @plane = 0
+    @train = 0
+    @car = 0
+    @bus = 0
+    for user in @group.users
+       for emission in user.dopplr_emissions
+          if !emission.personal or @group.personal then
+          @total += emission.co2
+          if emission.date.year == Time.now.year then @year += emission.co2 end
+          if (emission.date.month == Time.now.month &&  emission.date.year == Time.now.year)then @month += emission.co2 end
+        end
+      case emission.source.id
+      when 3..4 
+       @plane += emission.co2
+     when 5
+       @train += emission.co2
+     when 7..13
+       @car += emission.co2
+     when 15
+       @bus+= emission.co2
+     when 6
+       @bus+= emission.co2
+     when 14
+       @train += emission.co2
+       end
+      end
     end
     
     respond_to do |format|
@@ -117,4 +138,7 @@ class GroupsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+
+  
 end

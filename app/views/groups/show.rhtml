@@ -20,6 +20,24 @@
 <%end%>
 </ul>
 </div>
+<h1>Distribution of emissions:</h1>
+<div class="emission">
+		<div class="picture"><%= image_tag "/icons/plane.png" %></div>
+		<div class="co2"><h2><co2><%= @plane.round(0) %></co2></h2><h2> Kg. CO2eq.</h2></div>
+	</div>
+	<div class="emission">
+		<div class="picture"><%= image_tag "/icons/car.png" %></div>
+		<div class="co2"><h2><co2><%= @car.round(0) %></co2></h2><h2> Kg. CO2eq.</h2></div>
+	</div>
+	<div class="emission">
+		<div class="picture"><%= image_tag "/icons/train.png" %></div>
+		<div class="co2"><h2><co2><%= @train.round(0) %></co2></h2><h2> Kg. CO2eq.</h2></div>
+	</div>
+	<div class="emission">
+		<div class="picture"><%= image_tag "/icons/bus.png" %></div>
+		<div class="co2"><h2><co2><%= @bus.round %></co2></h2><h2> Kg. CO2eq.</h2></div>
+	</div>
+
 </div>
 <div id="content_right">
 	<h1>Total impact of this group:</h1>
