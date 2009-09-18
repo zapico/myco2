@@ -27,9 +27,11 @@ class EmissionsController < ApplicationController
 
   # GET /emissions/new
   # GET /emissions/new.xml
-  def new
+  def new_electricity
     @emission = Emission.new
-
+    @user = User.find(session[:id])
+    @city = @user.city
+    @source = Source.find(:first, :conditions => ["Name = 'Electricity' && city_id = ?", @city.id])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @emission }
@@ -41,15 +43,14 @@ class EmissionsController < ApplicationController
     @emission = Emission.find(params[:id])
   end
 
-  # POST /emissions
-  # POST /emissions.xml
+  # Create the emission after calculating the co2
   def create
     @emission = Emission.new(params[:emission])
-    @emission.amount = @emission.amount * @emission.source.factor
+    @emission.co2 = @emission.co2 * @emission.source.factor
     respond_to do |format|
       if @emission.save
         flash[:notice] = 'Emission was successfully created.'
-        format.html { redirect_to(@emission) }
+        format.html { redirect_to :action => 'new_electricity' }
         format.xml  { render :xml => @emission, :status => :created, :location => @emission }
       else
         format.html { render :action => "new" }

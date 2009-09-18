@@ -3,24 +3,16 @@ html {
 	background: #fff; 
 }
 body {
-	/* Left top background */
-	/* background: #d6d6d6 url(/img/page-shadow-top.png) 0 13px no-repeat; */
-	padding-top: 20px;
-	margin: 0 auto 20px;
-	width: 984px; 
 }
 #wrapper {
 	/* Right shadow background */
 	/* background: white url(/img/page-shadow-right.png) 100% 0% repeat-y; */
-	color: black; 
-	margin: 0 auto;
-	padding-right: 7px;
+	padding-top: 20px;
+	margin: 0 auto 20px;
+	width: 984px;
+	text-align: center;
 }
-#wrapper2 {
-	/* Left shadow background */
-	/* background: url(/img/page-shadow-left.png) 0% 0% repeat-y;*/
-	padding: 2px 0 0 7px;
-}
+
 #header {
 	/* background: white url(/img/header-shadow-top.png) repeat-x; */
 	color: #0b499e;
@@ -42,12 +34,12 @@ body {
 
 #footer {
 	height: 100px;
-	width: 970px; 
-	background-color: #fff;
+	width: 100%; 
 	overflow: hidden;
 	position: relative;
+	bottom: 0px;
 	padding-top: 25px;
-	padding-bottom: 30px;
+	margin-bottom: 30px;
 	border-top: 1px solid #CCCCCC;
 	border-bottom: 1px solid #CCCCCC;
 }

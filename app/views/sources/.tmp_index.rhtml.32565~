@@ -1,0 +1,26 @@
+<div id="content_left">
+<h1>Listing sources</h1>
+
+
+<% for source in @sources %>
+
+<% if source.picture != nil %>
+<%= image_tag source.picture 	 %>
+<% end %>
+<p><b><%= source.name  %></b>
+In: <%= source.city.name %></p>
+<p>More info: <%= source.metadata  %></p>
+<p>
+<%= link_to 'Show', source %>
+ | <%= link_to 'Edit', edit_source_path(source) %>
+ | <%= link_to 'Destroy', source, :confirm => 'Are you sure?', :method => :delete %>
+</p>
+<p>--------------------------------------------------------------------</p>
+<% end %>
+
+
+<br />
+</div>
+<div id="content_right">
+<%= link_to 'New source', new_source_path %>
+</div>

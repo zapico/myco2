@@ -31,6 +31,7 @@ class GroupsController < ApplicationController
     @train = 0
     @car = 0
     @bus = 0
+
     for user in @group.users
        for emission in user.dopplr_emissions
           if !emission.personal or @group.personal then
@@ -51,8 +52,21 @@ class GroupsController < ApplicationController
        @bus+= emission.co2
      when 14
        @train += emission.co2
+     end
+   end
+   
+    @electricity = 0
+    for user in @group.users
+       for emission in user.emissions
+         @total += emission.co2
+         if emission.date.year == Time.now.year then 
+           @electricity += emission.co2 
+           @year += emission.co2
        end
-      end
+       if (emission.date.month == Time.now.month &&  emission.date.year == Time.now.year)then @month += emission.co2 end
+     end
+     end
+   
     end
     
     respond_to do |format|

@@ -6,11 +6,11 @@
   <%= f.error_messages %>
   <p>For user <%= @user.name %> in the city of <%= @city.name %></p>
   <p>
-  	<p><label for="emission_co2">Consumption in kW/h</label><br/>
-	<%= text_field 'emission', 'co2'  %></p>
+  	<p><label for="emission_amount">Consumption in kW/h</label><br/>
+	<%= text_field 'emission', 'amount'  %></p>
 	
-	<p><label for="emission_date">Date</label><br/>
-	<%= date_select 'emission', 'date', :discard_day => true  %></p>
+	<p><label for="emission_from">Date</label><br/>
+	<%= date_select 'emission', 'month', :discard_day => true  %></p>
 	
 	  	<p><label for="emission_metadata">Information about this electricity consumption</label><br/>
 	<%= text_area 'emission', 'metadata'  %></p>

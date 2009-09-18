@@ -36,11 +36,21 @@
 		</div>
 		<div class="info">
 			<p>Trip from <b><%= d.from %></b> to <b><%= d.to %></b> the <%= d.date %></p>
-			<% if d.personal then %>
-			<p>This is a personal emission.</p>
-			<%else%>
-			<p>Make this emission personal.</p>
-			<%end%>
+			<% @groups.each do |g| %>
+		
+				<% s = ">> Add to " + g.name %>
+			
+				<% if d.groups.exists?(g) %>
+		
+				<p>Belongs to <%= g.name %>
+				<%= link_to 'Remove?', :controller => 'dopplr_emissions', :action=> 'remove_from_group', :group => g.id, :id => d.id %></p>
+		
+				<%else%>		
+		
+				<p><%= link_to s, :controller => 'dopplr_emissions', :action=> 'add_to_group', :group => g.id, :id => d.id %></p>
+		
+				<%end%>
+			<% end %>
 		</div>
 	</div>
 	
