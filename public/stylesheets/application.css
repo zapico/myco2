@@ -6,11 +6,15 @@ body {
 }
 #wrapper {
 	/* Right shadow background */
-	/* background: white url(/img/page-shadow-right.png) 100% 0% repeat-y; */
-	padding-top: 20px;
-	margin: 0 auto 20px;
-	width: 984px;
-	text-align: center;
+	/*background: white url(/img/page-shadow-right.png) 100% 0% repeat-y;*/
+	color: black; 
+	margin: 0 auto;
+	padding-right: 7px;
+}
+#wrapper2 {
+	/* Left shadow background */
+	/*background: url(/img/page-shadow-left.png) 0% 0% repeat-y;*/
+	padding: 2px 0 0 7px;
 }
 
 #header {
