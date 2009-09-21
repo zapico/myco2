@@ -8,13 +8,10 @@ body {
 	/* Right shadow background */
 	/*background: white url(/img/page-shadow-right.png) 100% 0% repeat-y;*/
 	color: black; 
+	text-align: center;
+	padding-top: 20px;
 	margin: 0 auto;
-	padding-right: 7px;
-}
-#wrapper2 {
-	/* Left shadow background */
-	/*background: url(/img/page-shadow-left.png) 0% 0% repeat-y;*/
-	padding: 2px 0 0 7px;
+	width: 984px;
 }
 
 #header {
@@ -121,7 +118,6 @@ margin:8px 0 0 10px;
 }
 
 #column_three {
-	position: relative;
 	height: auto;
 	width:250px;
 	margin-top: 8px;
