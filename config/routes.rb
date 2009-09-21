@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :groups
 
-  map.resources :emissions, :collection => {:new_electricity => :get }
+  map.resources :emissions, :collection => {:new_electricity => :get, :duplicate => :get }
 
   map.resources :sources
 

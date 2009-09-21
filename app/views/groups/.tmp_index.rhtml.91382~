@@ -1,0 +1,19 @@
+<div id="content_left">
+<h1 class="welcome">Together we can!</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for group in @groups %>
+    
+<p><%= group.name %>    
+ | <%= link_to 'Show', group %>
+</p>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Create a new group', new_group_path %>
+</div>

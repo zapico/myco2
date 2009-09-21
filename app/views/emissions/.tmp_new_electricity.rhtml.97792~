@@ -1,16 +1,18 @@
-<div id="content_left">
-
 <h1>New electricity emission</h1>
 
 <% form_for(@emission) do |f| %>
   <%= f.error_messages %>
   <p>For user <%= @user.name %> in the city of <%= @city.name %></p>
+  <p>Using the source <%= @source.name %> with a factor of <%= @source.factor %></p>
   <p>
-  	<p><label for="emission_co2">Consumption in kW/h</label><br/>
-	<%= text_field 'emission', 'co2'  %></p>
+  	<p><label for="emission_amount">Consumption in kW/h</label><br/>
+	<%= text_field 'emission', 'amount'  %></p>
 	
-	<p><label for="emission_date">Date</label><br/>
-	<%= date_select 'emission', 'date', :discard_day => true  %></p>
+	<p><label for="emission_from">From the date:</label><br/>
+	<%= date_select 'emission', 'start'  %></p>
+	
+	  	<p><label for="emission_to">To the date:</label><br/>
+	<%= date_select 'emission', 'end'  %></p>
 	
 	  	<p><label for="emission_metadata">Information about this electricity consumption</label><br/>
 	<%= text_area 'emission', 'metadata'  %></p>
@@ -24,10 +26,3 @@
 <% end %>
 
 <%= link_to 'Back', emissions_path %>
-</div>
-<div id="content_right">
-	<%= image_tag "/icons/el.png" %>
-	<h1>Electricity</h1>
-	<p><%= @source.metadata %></p>
-	 <p>Factor of <%= @source.factor %> Kg CO2 per KWh</p>
-</div>

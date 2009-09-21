@@ -1,28 +1,11 @@
 <div id="content_left">
-<h1 class="welcome"><%= @text %></h1>
+<h1 class="welcome">Hi <%= @user.name %>, you are doing great.</h1>
 <br>
 <h2><co2><%= @month.round %></co2> Kg. CO2eq. this month.</h2>
 <h2><co2><%= @year.round %></co2> Kg. CO2eq. this year.</h2>
 <h2><co2><%= @total.round %></co2> Kg. CO2eq. in total.</h2>
-
-<div class="emission">
-		<div class="picture"><%= image_tag "/icons/plane.png" %></div>
-		<div class="co2"><h2><co2><%= @plane.round(0) %></co2></h2><h2> Kg. CO2eq.</h2></div>
-	</div>
-	<div class="emission">
-		<div class="picture"><%= image_tag "/icons/car.png" %></div>
-		<div class="co2"><h2><co2><%= @car.round(0) %></co2></h2><h2> Kg. CO2eq.</h2></div>
-	</div>
-	<div class="emission">
-		<div class="picture"><%= image_tag "/icons/train.png" %></div>
-		<div class="co2"><h2><co2><%= @train.round(0) %></co2></h2><h2> Kg. CO2eq.</h2></div>
-	</div>
-	<div class="emission">
-		<div class="picture"><%= image_tag "/icons/bus.png" %></div>
-		<div class="co2"><h2><co2><%= @bus.round %></co2></h2><h2> Kg. CO2eq.</h2></div>
-	</div>
-	
 <br><h2>Your goal this month (in respect to a sustainable standard)</h2>
+
 <%= image_tag @grafico, :alt => 'foo' %><br><br>
 
 <h2>Your history (last six months)</h2>

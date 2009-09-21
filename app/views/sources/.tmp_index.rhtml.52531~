@@ -5,7 +5,7 @@
 <% for source in @sources %>
 
 <% if source.picture != nil %>
-<%= image_tag source.picture 	 %>
+<%= image_tag source.picture, :width => "250"  %>
 <% end %>
 <p><b><%= source.name  %></b>
 In: <%= source.city.name %></p>

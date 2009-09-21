@@ -5,7 +5,7 @@
 Under <%= @source.category %> // <%= @source.city.name %></p>
 <p>More info: <%= @source.metadata  %></p>
 <% if @source.picture != nil %>
-<%= image_tag @source.picture  %>
+<%= image_tag @source.picture, :width => "500"  %>
 <% end %>
 <br/>
 </div>
