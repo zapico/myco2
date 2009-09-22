@@ -78,7 +78,7 @@ class UsersController < ApplicationController
   
   # Index showing all users
   def index
-    @users = User.find(:all)
+    @users = User.find(:all, :order => 'year_emission DESC')
   end
   
   # List with user for administration purposes
@@ -219,6 +219,19 @@ class UsersController < ApplicationController
         if request.post? and @user.update_attributes(params[:user])
             redirect_to :action => 'adminpasswords'
         end
+  end
+  
+  
+  # Update the emission year field for users
+  def update_year_emissions
+    User.find(:all).each do |user|
+        total = 0
+        user.dopplr_emissions.each do |d|
+          if d.date.year == Time.now.year then total += d.co2 end
+        end
+        user.year_emission = total
+        user.save
+    end
   end
 
 end

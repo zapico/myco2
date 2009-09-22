@@ -10,7 +10,7 @@
 	<li>
 	<%= gravatar(user.email)%>
 	<p><b><%= user.name %></b>:</p>
-	<h2> <%= total_co2(user.id).round  %> kg</h2>
+	<h2> <%= user.year_emission  %> kg</h2>
 	</li>
 
 <%end%>

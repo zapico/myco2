@@ -75,6 +75,9 @@ class GroupsController < ApplicationController
        if (emission.date.month == Time.now.month &&  emission.date.year == Time.now.year)then @month += emission.co2 end
      end
      end
+     
+     @goals = @group.goals
+     
    end
    
     end
@@ -88,7 +91,8 @@ class GroupsController < ApplicationController
   # Detailed list of group emissions
   def emissions
     @group = Group.find(params[:id])
-    @dopplremissions = DopplrEmission.find(:all) 
+    @users = @group.users
+    
   end
   
    # Join the active user to the group

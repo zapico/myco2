@@ -2,6 +2,7 @@
 <h1 class="welcome"><%= @group.name%></h1>
 <p><%= @group.info%></p>
 <br/>
+
 <h1>Members</h1>
 <% if User.find(session[:id]).groups.exists?(:id => @group.id) then %>
 <p>You are a member of this group!</p>
@@ -20,8 +21,9 @@
 <%end%>
 </ul>
 </div>
+
 <h1>Emissions this year by area:</h1>
-<div class="emission">
+	<div class="emission">
 		<div class="picture"><%= image_tag "/icons/plane.png" %></div>
 		<div class="co2"><h2><co2><%= @plane.to_i %></co2></h2><h2> Kg. CO2eq.</h2></div>
 	</div>
@@ -42,6 +44,8 @@
 		<div class="co2"><h2><co2><%= @electricity.to_i %></co2></h2><h2> Kg. CO2eq.</h2></div>
 	</div>
 
+
+
 </div>
 <div id="content_right">
 	<h1>Total impact of this group:</h1>
@@ -50,4 +54,11 @@
 	<h2><co2><%= @total.to_i %></co2><br> Kg. CO2eq. in total.</h2>
 	<br><br>
 	<p><%= link_to "See group emissions", :action=> 'emissions', :id => @group.id %></p>
+	<h1>Our goals:</h1>
+	<% if @goals %>
+	<% @goals.each do |g| %>
+		<p><%= g.description %></p>
+	<%end%>
+		<%end%>
+	
 </div>

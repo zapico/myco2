@@ -1,4 +1,4 @@
-html {
+	html {
 	color: black;
 	background: #fff; 
 }
@@ -98,7 +98,7 @@ margin:8px 0 0 10px;
 }
 #column_one {
 	position: relative;
-	width:250px;
+	width:260px;
 	height: auto;
 	margin-top: 8px;
 	float:left;
@@ -109,21 +109,22 @@ margin:8px 0 0 10px;
 	
 #column_two {
 	position: relative;
-	width:250px;
+	width:260px;
 	margin-top: 8px;
 	float:left;
     background:#fff;
-    padding-left: 35px;
+    padding-left: 40px;
 	margin-bottom: 30px;
 }
 
 #column_three {
 	height: auto;
-	width:250px;
+	width:260px;
 	margin-top: 8px;
 	float:left;
+	text-align: center;
     background:#fff;
-    padding-left: 35px;
+    padding-left: 40px;
 	margin-bottom: 30px;
 }
 #user_index {

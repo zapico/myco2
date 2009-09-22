@@ -12,8 +12,53 @@ class CitiesController < ApplicationController
     end
   end
 
+  # Public homepage
   def info
+      
+      
+      # Information of total year emissions from plane
+      @plane = 0
+      source = Source.find(4)
+      dopplr = source.dopplr_emissions.find(:all, :conditions => ["YEAR(date) = ?",Time.now.year ]) 
+      source2 = Source.find(3)
+      dopplr2 = source2.dopplr_emissions.find(:all, :conditions => ["YEAR(date) = ?",Time.now.year ])
+      dopplr.each do |d|
+        @plane += d.co2
+      end
+      dopplr2.each do |c|
+        @plane += c.co2
+      end
+      
+      # Information of total year emissions from train
+      @train = 0
+      source = Source.find(5)
+      train = source.dopplr_emissions.find(:all, :conditions => ["YEAR(date) = ?",Time.now.year ]) 
+      source2 = Source.find(14)
+      train2 = source2.emissions.find(:all, :conditions => ["YEAR(date) = ?",Time.now.year ])
+      train.each do |d|
+        @train += d.co2
+      end
+      train2.each do |c|
+        @train += c.co2
+      end
+      
+      # Information of total year emissions
+      @total = 0
+      dopplr = DopplrEmission.find(:all, :conditions => ["YEAR(date) = ?",Time.now.year ]) 
+      commuting = PeirEmission.find(:all, :conditions => ["YEAR(date) = ?",Time.now.year ]) 
+      emmisions = Emission.find(:all, :conditions => ["YEAR(date) = ?",Time.now.year ]) 
+      dopplr.each do |d|
+        @total += d.co2
+      end
+      commuting.each do |c|
+        @total += c.co2
+      end
+      emmisions.each do |e|
+        @total += e.co2
+      end  
   end
+  
+  
   # GET /cities/1
   # GET /cities/1.xml
   def show
