@@ -10,14 +10,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # :secret => '800f03510a8cc5a2142335086094cc7b'
   
   def authorize  
-     unless User.find_by_id(session[:id])
+     unless session[:id] && User.find_by_id(session[:id])
           flash[:notice] = "Please log in"
           redirect_to(:controller => "users", :action => "login")
      end
   end
   
   def authorize_admin
-     unless User.find_by_id(session[:id]).id == 5
+     unless session[:id] && User.find_by_id(session[:id]).id == 5
           flash[:notice] = "Please log in"
           redirect_to(:controller => "users", :action => "profile")
      end

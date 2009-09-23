@@ -12,6 +12,7 @@ body {
 	padding-top: 20px;
 	margin: 0 auto;
 	width: 984px;
+	overflow: hidden;
 }
 
 #header {
@@ -34,21 +35,20 @@ body {
 /* Footer */
 
 #footer {
-	height: 100px;
-	width: 100%; 
-	overflow: hidden;
-	position: relative;
-	bottom: 0px;
-	padding-top: 25px;
-	margin-bottom: 30px;
-	border-top: 1px solid #CCCCCC;
-	border-bottom: 1px solid #CCCCCC;
+	padding: 25px 10px 15px 5px;
+ 	width : 984px;
+height: 110px;
+  	margin: 0px auto;
+	border-top: 1px solid #cccccc;
+	border-bottom: 2px solid #cccccc;
+	margin-bottom: 25px;
 }
 
 #footer .footer-list {
 float:left;
 font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-margin:8px 0 0 10px;
+margin:8px 0 30px 10px;
+text-align: center;
 }
 #footer .footer-list ul {
 	line-height:18px;
@@ -75,10 +75,10 @@ margin:8px 0 0 10px;
 	position: relative;
 	width:100%;
 	height: auto;
+	padding-bottom: 10px;
 	top: 8px;
 	text-align:left;
 	margin-bottom: 30px;
-	background-color: #FFFFFF;
 }
 #content_left {
 	width:480px;

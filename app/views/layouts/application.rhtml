@@ -11,7 +11,6 @@
 <body>
 <div id="wrapper">
 	<div id="header">
-		<br/>
 		<a href="/"><img src="/images/logo2.png" border='0' alt="our co2"/></a>
 		
 		<div id="menu">
@@ -23,10 +22,12 @@
 	
 	<div id="content">
 	<%= yield  %>
+	<br/><br/>
 	</div>	
-<br/><br/>
-	<div id="footer">
-		<div class="footer-list">
+</div>
+	
+<div id="footer">
+	<div class="footer-list">
 			<h4>Menu</h4>
 			<ul>
 			<li><a href="/users" >Users</a></li>
@@ -34,7 +35,7 @@
 			<li><a href="/sources" >Sources</a></li>					
 		    </ul>
 		</div>
-		<div class="footer-list">
+	<div class="footer-list">
 			<h4>More information</h4>
 			<ul>
 			<li><a href="mailto:info@ourco2.org" target="_blank">Email us</a></li>
@@ -51,19 +52,21 @@
 		    </ul>
 		</div>
 		<div class="footer-list">
+			
+		    <% if session[:id] && User.find_by_id(session[:id]).id == 5 %>
 			<h4>Administration</h4>
 			<ul>
 			<li><a href="/users/new" >New User</a></li>
 			<li><a href="/groups" >Admin User</a></li>
-			<li><a href="/groups">Crontab functions</a></li>					
-		    </ul>
+			<li><a href="/groups">Crontab functions</a></li>
+			</ul>
+			<%end%>					
+
 		</div>
-		<br>
-	</div>
 	</div>
 	
 
-</div>	 
-</div>
+	 
+
 </body>
 </html>
