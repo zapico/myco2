@@ -13,4 +13,4 @@ set :user, "root"
 # your SCM below:
 # set :scm, :subversion
 
-server "verdemedia.org", :app, :web, :db, :primary => true
+server "verdemedia.org", :app, :web, :db, :primary => true  

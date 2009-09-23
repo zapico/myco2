@@ -233,5 +233,84 @@ class UsersController < ApplicationController
         user.save
     end
   end
+  
+  # Dummy profile for showing as example
+  # Main page for user profile
+  def profile_example
+    @user = User.find(5)
+    
+    # Calculate total CO2
+    dopplremissions = @user.dopplr_emissions.find(:all)
+    
+    @total = 0 
+    @year = 0
+    @month = 0
+    month2 = 0
+    month3 = 0
+    month4 = 0
+    month5 = 0
+    month6 = 0
+    @plane = 0
+    @train = 0
+    @car = 0
+    @bus = 0
+    
+    for emission in dopplremissions
+      @total += emission.co2
+      if emission.date.year == Time.now.year then @year += emission.co2 end
+      if (emission.date.month == Time.now.month &&  emission.date.year == Time.now.year)then @month += emission.co2 end
+      if (emission.date.month == Time.now.month-1 &&  emission.date.year == Time.now.year)then month2 += emission.co2 end
+      if (emission.date.month == Time.now.month-2 &&  emission.date.year == Time.now.year)then month3 += emission.co2 end
+      if (emission.date.month == Time.now.month-3 &&  emission.date.year == Time.now.year)then month4 += emission.co2 end
+      if (emission.date.month == Time.now.month-4 &&  emission.date.year == Time.now.year)then month5 += emission.co2 end
+      if (emission.date.month == Time.now.month-5 &&  emission.date.year == Time.now.year)then month6 += emission.co2 end
+      case emission.source.id
+      when 3..4 
+       @plane += emission.co2
+     when 5
+       @train += emission.co2
+     when 7..13
+       @car += emission.co2
+     when 15
+       @bus+= emission.co2
+     when 6
+       @bus+= emission.co2
+     when 14
+       @train += emission.co2
+       end
+    end
+    
+    @grafico="http://chart.apis.google.com/chart?chs=250x150&amp;cht=bvg&amp;chd=t:"+@year.round.to_s+","+@month.round.to_s+"|5600,460&chds=0,10000,0,10000&amp;chco=4D89F9,C6D9FD"
+    
+    @history="http://chart.apis.google.com/chart?chs=450x200&amp;cht=bvg&amp;chd=t:"+month6.to_s+","+month5.to_s+","+month4.to_s+","+month3.to_s+","+month2.to_s+","+@month.to_s+"&chds=0,5000&amp;chm=N,000000,0,-1,11&amp;chco=4D89F9"
+    
+    
+    
+    words = @user.name.split()
+    firstname = words[0]
+    
+    case @year
+      when 0..1499
+        @text = "Hi "+ firstname + ",you're doing great."
+      when 1500..1999
+        @text = "Hi "+ firstname + ", you're reaching the limit this year"
+      when 2000..3999
+        @text = "Hi "+ firstname + ", you should reduce your emissions"
+      else
+        @text = firstname + ", you're a climate disaster..."
+       end
+  end
+  # Detailed emissions for dummy profile
+  def emissions_example
+    @user = User.find(5)
+    
+    # Take dopplremissions
+    @peiremissions = @user.peir_emissions.find(:all, :order => "date DESC")
+    @dopplremissions = @user.dopplr_emissions.find(:all, :order => "date DESC")
+    @groups = @user.groups
+    
+  end
+  
+  
 
 end
