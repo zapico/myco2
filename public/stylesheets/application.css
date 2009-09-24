@@ -37,7 +37,7 @@ body {
 #footer {
 	padding: 25px 10px 15px 5px;
  	width : 984px;
-height: 110px;
+	height: 110px;
   	margin: 0px auto;
 	border-top: 1px solid #cccccc;
 	border-bottom: 2px solid #cccccc;
@@ -188,22 +188,34 @@ h1.welcome{
 	font-size: 4em;
 	margin:0;
 }
+h1.big{
+	font-size: 2.5em;
+	margin:0;
+}
 h2 { 
 	color: #ccc;
 	font-size: 1.2em; 
 	margin: 0.1em 0 1em 0; 
 	padding: 0;
 }
+h2.day { 
+	color: #998675;
+	font-size: 2.6em; 
+	margin: 0.2em 0 1em 0; 
+	padding: 0;
+}
+
+
 co2{
 	font-size: 3em;
 	color: #4D89F9;
 }
 p { 
-		color: #000;
-		font-size: 0.9em; 
-				margin: 2em 0 1em 0; 
-				padding: 0;
-			}
+	color: #000;
+	font-size: 1em; 
+	margin: 1em 0 0.5em 0; 
+	padding: 0;
+}
 pre {
   background-color: #eee;
   padding: 10px;

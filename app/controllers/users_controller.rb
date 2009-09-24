@@ -201,8 +201,10 @@ class UsersController < ApplicationController
     
   end
   
+  # Configuration page where accounts can be linked and information added
   def configuration
-  @user = User.find(session[:id])
+    @user = User.find(session[:id])
+    @habits = @user.peir_emissions(:all, :condition=>["habit != '0'"])
   end
   
   # Password management

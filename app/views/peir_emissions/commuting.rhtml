@@ -1,44 +1,69 @@
 <div id="content_left">
 <h1 class="welcome">My commuting</h1>
-<br>
+<p>Daily commuting is a big part of our carbon footprint. Here you can control and account your daily commuting impact.</p>
 
-<h2><co2><%= @month %></co2> Kg. CO2eq. this month.</h2>
-<h2><co2><%= @year.round %></co2> Kg. CO2eq. this year.</h2>
-<h2><co2><%= @total.round %></co2> Kg. CO2eq. in total.</h2>
 
-<h1>My commuting habits:</h1>
+
+<h2 class="day">mon<h2>
 <% @habits.each do |h| %>
-	<p><b><%= h.km %></b> km <%= habit_to_s(h) %>  by <%= h.source.name %></p>
-	<h2><co2><%= h.co2.round %></co2> Kg. CO2eq.</h2>
-	<p><%= link_to 'Edit', :controller => 'peir_emissions', :action=> 'edit', :id => h.id %></p>
-	<br/><br/>
+	<% if h.habit == 1 or h.habit == 2 or (h.habit == 3 && h.date.wday == 1 )  %>
+		<p><%= h.metadata %>: <b><%= h.km %></b> km by <%= h.source.name %>, creating <b><%= h.co2.round(2) %></b> Kg. CO2eq. <%= link_to '(Edit)', :controller => 'peir_emissions', :action=> 'edit', :id => h.id %></p>
+		<br/>
+		<%end%>
 <%end%>
-<h1>Other commuting trips:</h1>
-<% @other.each do |o| %>
-	<p><b><%= o.km %></b> km the <%= o.date %>  by <%= o.source.name %></p>
-	<h2><co2><%= o.co2 %></co2> Kg. CO2eq.</h2>
-	<p><%= link_to 'Edit', :controller => 'peir_emissions', :action=> 'edit', :id => o.id %></p>
-	<br/><br/>
+
+<h2 class="day">tue<h2>
+<% @habits.each do |h| %>
+	<% if h.habit == 1 or h.habit == 2 or (h.habit == 3 && h.date.wday == 2 )  %>
+		<p><%= h.metadata %>: <b><%= h.km %></b> km by <%= h.source.name %>, creating <b><%= h.co2.round(2) %></b> Kg. CO2eq. <%= link_to '(Edit)', :controller => 'peir_emissions', :action=> 'edit', :id => h.id %></p>
+		<%end%>
 <%end%>
+
+<h2 class="day">wed<h2>
+<% @habits.each do |h| %>
+	<% if h.habit == 1 or h.habit == 2 or (h.habit == 3 && h.date.wday == 3 )  %>
+		<p><%= h.metadata %>: <b><%= h.km %></b> km by <%= h.source.name %>, creating <b><%= h.co2.round(2) %></b> Kg. CO2eq. <%= link_to '(Edit)', :controller => 'peir_emissions', :action=> 'edit', :id => h.id %></p>
+		<%end%>
+<%end%>
+
+<h2 class="day">thu<h2>
+<% @habits.each do |h| %>
+	<% if h.habit == 1 or h.habit == 2 or (h.habit == 3 && h.date.wday == 4 )  %>
+		<p><%= h.metadata %>: <b><%= h.km %></b> km by <%= h.source.name %>, creating <b><%= h.co2.round(2) %></b> Kg. CO2eq. <%= link_to '(Edit)', :controller => 'peir_emissions', :action=> 'edit', :id => h.id %></p>
+		<%end%>
+<%end%>
+
+<h2 class="day">fri<h2>
+<% @habits.each do |h| %>
+	<% if h.habit == 1 or h.habit == 2 or (h.habit == 3 && h.date.wday == 5 )  %>
+		<p><%= h.metadata %>: <b><%= h.km %></b> km by <%= h.source.name %>, creating <b><%= h.co2.round(2) %></b> Kg. CO2eq. <%= link_to '(Edit)', :controller => 'peir_emissions', :action=> 'edit', :id => h.id %></p>
+		<%end%>
+<%end%>
+
+<h2 class="day">sat<h2>
+<% @habits.each do |h| %>
+	<% if h.habit == 1 or h.habit == 2 or (h.habit == 3 && h.date.wday == 6 )  %>
+		<p><%= h.metadata %>: <b><%= h.km %></b> km by <%= h.source.name %>, creating <b><%= h.co2.round(2) %></b> Kg. CO2eq. <%= link_to '(Edit)', :controller => 'peir_emissions', :action=> 'edit', :id => h.id %></p>
+		<%end%>
+<%end%>
+
+<h2 class="day">sun<h2>
+<% @habits.each do |h| %>
+	<% if h.habit == 1 or h.habit == 2 or (h.habit == 3 && h.date.wday == 0 )  %>
+		<p><%= h.metadata %>: <b><%= h.km %></b> km by <%= h.source.name %>, creating <b><%= h.co2.round(2) %></b> Kg. CO2eq. <%= link_to '(Edit)', :controller => 'peir_emissions', :action=> 'edit', :id => h.id %></p>
+		<%end%>
+<%end%>
+
+<br/><br/>
+<h2>Your normal carbon impact per week is: <co2><%= @week.round(2) %></co2> Kg CO2eq</h2>
 
 <br />
 </div>
 <div id="content_right">
-<%= gravatar(@user.email)%><br>
-<p><%= @user.name %> at <%= @user.city.name rescue nil %></p>
 
-<br><h2>My groups</h2>
-<% @user.groups.each do |g| %>
-<p><%= link_to g.name, :controller=> "groups",:action=> 'show', :id => g.id %></p>
-<%end %>
+	<h2><co2><%= @month.round(2) %></co2></h2><h2> Kg. CO2eq. this month.</h2>
+	<h2><co2><%= @year.to_i %></co2></h2><h2> Kg. CO2eq. this year.</h2>
+	<h2><co2><%= @total.to_i %></co2></h2><h2> Kg. CO2eq. in total.</h2>
 
-<br><h2>My emissions</h2>
-<p><%= link_to 'Show detailed emissions', :action=> 'emissions'%></p>
-
-<br><h2>Admin</h2>
-<p><%= link_to 'Edit your sevices', :action=> 'configuration'%></p>
-<p><%= link_to 'Edit your info', :action=> 'edit'%></p>
-<p><%= link_to 'Logout', :action=> 'logout'%></p>
-
-
+	<%= link_to image_tag("/images/addnew.png", :border => '0'), :action => 'new'%>
 </div>

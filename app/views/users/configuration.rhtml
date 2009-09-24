@@ -1,7 +1,7 @@
 <div id="column_one">
 
-<%= image_tag "/images/icons/plane.png"%>
-<h1 class="welcome">Traveling</h1>
+<center><%= image_tag "/images/icons/plane.png"%>
+<h1 class="big">Traveling</h1></center>
 
 <% if @user.tokendopplr then %>
 	<p>You have already linked your Dopplr account. <%= link_to 'Want to reset it?', :controller => 'dopplr', :action => 'link' %></p>
@@ -10,25 +10,24 @@
 <p><%= link_to 'Link your Dopplr account', :controller => 'dopplr', :action => 'link' %></p>
 <%end%>
 
-<%= image_tag "/images/icons/bike.png" %>
-<h1 class="welcome">Commuting</h1>
-
-<p><%= link_to 'Account commuting manually', :controller => 'peir_emissions', :action => 'new' %></p>
 
 </div>
 
 <div id="column_two">
-<h1>Housing</h1>
-<p>Our sweet home is one of the places where we emit most carbon dioxide.</p>
-<p><b>1. Available services:</b></p>
-<p>Connect with Fortum: coming soon.</p>
-<p><b>2. Add information manually:</b></p>
-<p><%= link_to 'Add Electricity use', :controller => 'emissions', :action => 'new_electricity' %></p>
+	<center><%= image_tag "/images/icons/bike.png" %>
+	<h1 class="big">Commuting</h1></center>
+	<p>My commuting habits</p>
+	<% @habits.each do |h| %>
+		<p><%= h.metadata %></p>
+	<% end %>
+	<p><%= link_to 'Account commuting manually', :controller => 'peir_emissions', :action => 'new' %></p>
+
 </div>
 
 <div id="column_three">
-<h1>Food</h1>
-<p>Coming soon.</p>
+	<%= image_tag "/images/icons/el.png" %>
+	<h1 class="big">Housing</h1>
+	<p><%= link_to 'Add Electricity use', :controller => 'emissions', :action => 'new_electricity' %></p>
 </div>
 
 
