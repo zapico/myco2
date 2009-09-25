@@ -92,7 +92,12 @@ class GroupsController < ApplicationController
   def emissions
     @group = Group.find(params[:id])
     @users = @group.users
-    
+    @dopplremissions = 0
+    @peiremissions = 0
+    @users.each do |u|
+      @dopplremissions += u.dopplr_emissions(:all, :conditions => ["private = '0'"])
+      @peiremissions += u.peir_emissions(:all)
+    end
   end
   
    # Join the active user to the group

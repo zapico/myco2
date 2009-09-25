@@ -35,6 +35,14 @@ class DopplrController < ApplicationController
     end
   end
   
+  # Refresh the data from all users
+  def refresh_all
+    User.find(:all, :conditions => ["tokendopplr != NULL"]).each do |u|
+      call :action => getdata, :id => user.id
+    end
+    render :nothing => true 
+  end
+    
   
   # Grabs the data from Dopplr and writes in the db for dopplr_emissions
   def getdata

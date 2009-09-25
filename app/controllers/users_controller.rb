@@ -6,7 +6,7 @@
 
 class UsersController < ApplicationController
   before_filter :authorize, :only => [:edit, :destroy, :account, :changepassword, :profile]
-  before_filter :authorize_admin, :only => [:list, :delete, :resetpassword, :adminpasswords, :editadmin]
+  before_filter :authorize_admin, :only => [:list, :delete, :resetpassword, :adminpasswords, :editadmin, :administration]
   
     def login
       reset_session
@@ -223,6 +223,11 @@ class UsersController < ApplicationController
         end
   end
   
+  # Administration site
+  def administration
+    
+  end
+  
   
   # Update the emission year field for users
   def update_year_emissions
@@ -234,6 +239,7 @@ class UsersController < ApplicationController
         user.year_emission = total
         user.save
     end
+    render :nothing => true 
   end
   
   # Dummy profile for showing as example

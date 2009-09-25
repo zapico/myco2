@@ -1,6 +1,13 @@
 <div id="content_left">
 <h1>User administration</h1>
 <% for user in @users %>
-	<p><%= link_to user.name, :action=> 'editadmin', :id => user %></p>
+	<p>
+	<b><%= user.name%></b>
+	<%= link_to "Edit", :action=> 'editadmin', :id => user %>
+	<%= link_to "Change password", :action=> 'editadmin', :id => user %>
+	<% if user.tokendopplr then %>
+		<%= link_to "Refresh Dopplr", :controller => 'dopplr', :action=> 'getdata', :id => user %>
+	<%end%>
+	</p>
 <%end%>
 </div>
