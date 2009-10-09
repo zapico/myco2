@@ -23,7 +23,10 @@ class GroupsController < ApplicationController
   # GET /groups/1.xml
   # Main page for the group
   def show
+    # Get the group
     @group = Group.find(params[:id])
+    
+    # Initiate counters
     @year = 0
     @month = 0
     @total = 0
@@ -41,6 +44,8 @@ class GroupsController < ApplicationController
             @year += emission.co2 
             
             # Account for yearly emissions of different sources
+            # First check if the emission have a source (it should..)
+            if emission.source.id then  
             case emission.source.id
              when 3..4 
               @plane += emission.co2
@@ -54,7 +59,9 @@ class GroupsController < ApplicationController
               @bus+= emission.co2
             when 14
               @train += emission.co2
-            end  
+            end
+            end
+            
             end
           if (emission.date.month == Time.now.month &&  emission.date.year == Time.now.year)then @month += emission.co2 end
         end

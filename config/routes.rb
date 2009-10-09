@@ -59,6 +59,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.info 'info', :controller => "cities", :action => "info" 
   map.info 'commuting', :controller => "peir_emissions", :action => "commuting" 
+  map.info 'industrialecology', :controller => "groups", :action => "show", :id => "1" 
 
   # See how all your routes lay out with "rake routes"
 

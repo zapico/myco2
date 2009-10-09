@@ -14,7 +14,7 @@ def gravatar_url(email,gravatar_options={})
 
   # Default image url to be used when no gravatar is found
   # or when an image exceeds the rating parameter.
-  gravatar_options[:default] ||= nil
+  gravatar_options[:default] = "http://localhost:3000/images/gravatar.jpg"
 
   # Build the Gravatar url.
   grav_url = 'http://www.gravatar.com/avatar.php?'

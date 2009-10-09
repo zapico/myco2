@@ -3,7 +3,7 @@
 <p>Daily commuting is a big part of our carbon footprint. Here you can control and account your daily commuting impact.</p>
 
 
-
+<% if @habits then %>
 <h2 class="day">mon<h2>
 <% @habits.each do |h| %>
 	<% if h.habit == 1 or h.habit == 2 or (h.habit == 3 && h.date.wday == 1 )  %>
@@ -54,6 +54,8 @@
 		<%end%>
 <%end%>
 
+<%end%>
+
 <br/><br/>
 <h2>Your normal carbon impact per week is: <co2><%= @week.round(2) %></co2> Kg CO2eq</h2>
 
@@ -61,7 +63,7 @@
 </div>
 <div id="content_right">
 
-	<h2><co2><%= @month.round(2) %></co2></h2><h2> Kg. CO2eq. this month.</h2>
+	<h2><co2><%= @month.to_i %></co2></h2><h2> Kg. CO2eq. this month.</h2>
 	<h2><co2><%= @year.to_i %></co2></h2><h2> Kg. CO2eq. this year.</h2>
 	<h2><co2><%= @total.to_i %></co2></h2><h2> Kg. CO2eq. in total.</h2>
 

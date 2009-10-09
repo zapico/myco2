@@ -8,6 +8,8 @@
 class PeirEmissionsController < ApplicationController
 
   def commuting
+    
+    
     @user = User.find(session[:id])
     @other = @user.peir_emissions.find(:all, :conditions => ['habit = 0'])
     @habits = @user.peir_emissions.find(:all, :conditions => ["habit != '0'"])
@@ -22,6 +24,8 @@ class PeirEmissionsController < ApplicationController
       if (emission.date.month == Time.now.month &&  emission.date.year == Time.now.year)then @month += emission.co2 end
       if (emission.habit != 0)then @week += emission.co2 end
     end
+    
+    render :layout => 'peir' 
     
   end
   

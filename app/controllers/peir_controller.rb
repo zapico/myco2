@@ -10,6 +10,8 @@ class PeirController < ApplicationController
   # Grabs the data from PEIR in a XML and writes in the db for peir_emissions
   def show
     
+    render :layout => 'peir' 
+    
     # Starting variables 
 	  @trips = ""
 	  @data = 0;

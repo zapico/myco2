@@ -39,11 +39,12 @@
 		<div class="picture"><%= image_tag "/images/icons/bus.png" %></div>
 		<div class="co2"><h2><co2><%= @bus.to_i %></co2></h2><h2> Kg. CO2eq.</h2></div>
 	</div>
+	<% if @electricity %>
 	<div class="emission">
 		<div class="picture"><%= image_tag "/images/icons/el.png" %></div>
 		<div class="co2"><h2><co2><%= @electricity.to_i %></co2></h2><h2> Kg. CO2eq.</h2></div>
 	</div>
-
+	<%end%>
 
 
 </div>
