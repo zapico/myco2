@@ -49,14 +49,15 @@
 
 </div>
 <div id="content_right">
-	<h1>Total impact of this group:</h1>
 	<h2><co2><%= @month.to_i %></co2><br> Kg. CO2eq. this month.</h2>
 	<h2><co2><%= @year.to_i %></co2><br> Kg. CO2eq. this year.</h2>
 	<h2><co2><%= @total.to_i %></co2><br> Kg. CO2eq. in total.</h2>
 	<br><br>
 	<p><%= link_to "See group emissions", :action=> 'emissions', :id => @group.id %></p>
-	<h1>Our goals:</h1>
+	
+
 	<% if @goals %>
+	<h1>Goals</h1>
 	<% @goals.each do |g| %>
 		<p><%= g.description %></p>
 	<%end%>

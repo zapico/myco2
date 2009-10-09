@@ -16,13 +16,13 @@
 <p><label for="user_city">My city</label><br/>
 <p><%= collection_select("user", "city_id" , @cities, "id", "name") %></p>
 
-<p><label for="user_name">Dopplr Token</label><br/>
-<%= text_field 'user', 'tokendopplr'  %></p>
-
 <br>
 
 <br><%= submit_tag 'Update', :class => 'submit' %>
 <% end %>
-<p><%= link_to 'Show', :action => 'show', :id => @user %>
-| <%= link_to 'Back', :action => 'account' %></p>
+
+</div>
+<div id="content_right">
+<p>If you want to change your image, register with your email at <%= link_to "Gravatar", "http://gravatar.com", :target=>"_blank" %></p>
+<%= link_to 'Cancel and go back', :action => 'profile' %></p>
 </div>

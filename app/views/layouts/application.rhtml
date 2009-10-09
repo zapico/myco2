@@ -11,16 +11,25 @@
 <body>
 <div id="wrapper">
 	<div id="header">
-		<a href="/"><img src="/images/logo2.png" border='0' width="140px" alt="our co2"/></a>
+		<a href="/"><img src="/images/logo2.png" border='0' alt="our co2"/></a>
 		
-		<div id="menu">
-			<p>
-			<a href="/users/profile">My profile</a> | 
-			<a href="/users/configuration">Configuration</a> |
-			<a href="/users">Users</a> |
-			<a href="/groups">Groups</a>
-			</p>
+		<div id="menu-wrapper">
+			<% if session[:id] then%>
+			<ul id="main-menu">
+				<li><a href="/users/profile">My profile</a></li>
+				<li><a href="/users/configuration">Configuration</a></li>
+				<li><a href="/users">Users</a></li>
+				<li><a href="/groups">Groups</a></li>
+			</ul>
+			<% else %>
+			<ul id="main-menu">
+				<li><a href="/">Info</a></li>
+				<li><a href="/users/profile_example">Example</a></li>
+				<li><a href="/users/login">Login</a></li>
+			</ul>
+			<% end %>
 		</div>
+		
 	</div>
 	
 	<div id="content">

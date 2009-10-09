@@ -118,6 +118,8 @@ class UsersController < ApplicationController
       if (emission.date.month == Time.now.month-3 &&  emission.date.year == Time.now.year)then month4 += emission.co2 end
       if (emission.date.month == Time.now.month-4 &&  emission.date.year == Time.now.year)then month5 += emission.co2 end
       if (emission.date.month == Time.now.month-5 &&  emission.date.year == Time.now.year)then month6 += emission.co2 end
+      
+      if emission.source.id then
       case emission.source.id
       when 3..4 
        @plane += emission.co2
@@ -132,6 +134,7 @@ class UsersController < ApplicationController
      when 14
        @train += emission.co2
        end
+     end
     end
     
     @grafico="http://chart.apis.google.com/chart?chs=250x150&amp;cht=bvg&amp;chd=t:"+@year.round.to_s+","+@month.round.to_s+"|5600,460&chds=0,10000,0,10000&amp;chco=4D89F9,C6D9FD"
