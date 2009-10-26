@@ -22,4 +22,16 @@ def remove_from_group
   redirect_to :controller => "users", :action => "emissions" 
 end
 
+def changepersonal
+  emission = DopplrEmission.find(params[:id])
+  if emission.personal == 1 then
+    emission.personal = 0
+  else
+    emission.personal = 1
+  end
+  emission.save
+  @d = emission
+  render :layout => false  
+end
+
 end

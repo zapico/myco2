@@ -1,0 +1,13 @@
+<p>Trip from <b><%= @d.from %></b> to <b><%= @d.to %></b> the <%= @d.date %></p>
+<% if @d.personal == 1 then %>
+<p><%= image_tag "red_point.jpg"%> Personal emission. 
+<%= link_to_remote( "Change",
+                         :update => @d.id,
+                         :url =>{ :controller => "dopplr_emissions", :action => "changepersonal", :id => @d.id }) %>
+<%else%>
+<p><%= image_tag "green_point.jpg"%> Work emission. 
+<%= link_to_remote( "Change",
+                     :update => @d.id,
+                     :url =>{ :controller => "dopplr_emissions", :action => "changepersonal", :id => @d.id }) %>
+
+<%end%>

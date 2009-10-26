@@ -38,7 +38,7 @@ class GroupsController < ApplicationController
     # Aggregate transporation emissions
     for user in @group.users
        for emission in user.dopplr_emissions
-          if !emission.personal or @group.personal then
+          if emission.personal != 1 or @group.personal then
           @total += emission.co2
           if emission.date.year == Time.now.year then 
             @year += emission.co2 
@@ -98,13 +98,10 @@ class GroupsController < ApplicationController
   # Detailed list of group emissions
   def emissions
     @group = Group.find(params[:id])
-    @users = @group.users
-    @dopplremissions = 0
-    @peiremissions = 0
-    @users.each do |u|
-      @dopplremissions += u.dopplr_emissions(:all, :conditions => ["private = '0'"])
-      @peiremissions += u.peir_emissions(:all)
-    end
+    
+    @dopplremissions = @group.dopplr_emissions(:all,:conditions => ["personal = '0'"])
+    #@dopplremissions = DopplrEmission.find(:all, :include  => @group.users, :conditions => ["personal = '0'"])    
+      
   end
   
    # Join the active user to the group

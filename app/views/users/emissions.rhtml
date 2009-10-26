@@ -34,14 +34,20 @@
 			<h2><co2><%= d.co2.to_i %></co2></h2>
 			<h2> Kg. CO2eq.</h2>
 		</div>
-		<div class="info">
+		<div class="info" id=<%=d.id%>>
 			<p>Trip from <b><%= d.from %></b> to <b><%= d.to %></b> the <%= d.date %></p>
-			<% if d.personal then %>
-			<p><%= image_tag "red_point.jpg"%> Personal emission. <%= link_to "Change", :controller => "dopplr_emissions", :action => "changepersonal", :id => d.id %></p>
+			<% if d.personal == 1 then %>
+			<p><%= image_tag "red_point.jpg"%> Personal emission.
+			<%= link_to_remote( "Change",
+			                         :update => d.id,
+			                         :url =>{ :controller => "dopplr_emissions", :action => "changepersonal", :id => d.id }) %></p>
 			<%else%>
-			<p><%= image_tag "green_point.jpg"%> Work emission. <%= link_to "Change", :controller => "dopplr_emissions", :action => "changepersonal", :id => d.id %></p>
+			<p><%= image_tag "green_point.jpg"%> Work emission. 
+			<%= link_to_remote( "Change",
+		                         :update => d.id,
+		                         :url =>{ :controller => "dopplr_emissions", :action => "changepersonal", :id => d.id }) %></p>
+			
 			<%end%>
-			<%= link_to "edit", :controller => "dopplr_emissions", :action => "edit", :id => d.id %>
 		</div>
 	</div>
 	

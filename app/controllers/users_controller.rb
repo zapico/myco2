@@ -119,7 +119,7 @@ class UsersController < ApplicationController
       if (emission.date.month == Time.now.month-4 &&  emission.date.year == Time.now.year)then month5 += emission.co2 end
       if (emission.date.month == Time.now.month-5 &&  emission.date.year == Time.now.year)then month6 += emission.co2 end
       
-      if emission.source.id then
+      if emission.source.id and emission.date.year == Time.now.year then
       case emission.source.id
       when 3..4 
        @plane += emission.co2
