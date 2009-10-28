@@ -46,10 +46,12 @@
 </div>
 <div id="content_right">
 	<h1>Members</h1>
+	<% if session[:id] then %>
 	<% if User.find(session[:id]).groups.exists?(:id => @group.id) then %>
 	<p>You are a member of this group!</p>
 	<% else %>
 	<p><%= link_to 'Join', :action => 'join',:id => @group.id %></p>
+	<% end %>
 	<% end %>
 	<br><br>	
 	<% @group.users.each do |user| %>
