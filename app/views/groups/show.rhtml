@@ -2,25 +2,21 @@
 <h1 class="welcome"><%= @group.name%></h1>
 <p><%= @group.info%></p>
 <br/>
+<h2><co2><%= @month.to_i %></co2><br> Kg. CO2eq. this month.</h2>
+<h2><co2><%= @year.to_i %></co2><br> Kg. CO2eq. this year.</h2>
+<h2><co2><%= @total.to_i %></co2><br> Kg. CO2eq. in total.</h2>
 
-<h1>Members</h1>
-<% if User.find(session[:id]).groups.exists?(:id => @group.id) then %>
-<p>You are a member of this group!</p>
-<% else %>
-<p><%= link_to 'Join', :action => 'join',:id => @group.id %></p>
-<% end %>
-<div id="user_index">
-<ul>
-<% @group.users.each do |user| %>
+<p><%= link_to "See group emissions", :action=> 'emissions', :id => @group.id %></p>
+<br>
 
-	<li>
-	<%= gravatar(user.email)%>
-	<p><b><%= user.name %></b></p>
-	</li>
-
+<% if @goals %>
+<h1>Goals</h1>
+<% @goals.each do |g| %>
+	<p><%= g.description %></p>
 <%end%>
-</ul>
-</div>
+	<%end%>
+
+
 
 <h1>Emissions this year by area:</h1>
 	<div class="emission">
@@ -49,18 +45,19 @@
 
 </div>
 <div id="content_right">
-	<h2><co2><%= @month.to_i %></co2><br> Kg. CO2eq. this month.</h2>
-	<h2><co2><%= @year.to_i %></co2><br> Kg. CO2eq. this year.</h2>
-	<h2><co2><%= @total.to_i %></co2><br> Kg. CO2eq. in total.</h2>
-	<br><br>
-	<p><%= link_to "See group emissions", :action=> 'emissions', :id => @group.id %></p>
+	<h1>Members</h1>
+	<% if User.find(session[:id]).groups.exists?(:id => @group.id) then %>
+	<p>You are a member of this group!</p>
+	<% else %>
+	<p><%= link_to 'Join', :action => 'join',:id => @group.id %></p>
+	<% end %>
+	<br><br>	
+	<% @group.users.each do |user| %>
 	
-
-	<% if @goals %>
-	<h1>Goals</h1>
-	<% @goals.each do |g| %>
-		<p><%= g.description %></p>
+	<div class="usersmall">
+		<div class="picture"><%= gravatar(user.email, :size => 25)%></div>
+		<div class="info"><b><%= user.name %></b></div>
+	</div>
 	<%end%>
-		<%end%>
-	
+
 </div>

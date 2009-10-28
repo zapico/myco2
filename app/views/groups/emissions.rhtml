@@ -3,6 +3,7 @@
 <br/>
 <h1>Traveling:</h1>
 <% @dopplremissions.each do |d| %>
+	<% if @group.users.exists?(d.user_id) then %>
 	<div class="emission">
 		<div class="picture">
 			<% if d.source.picture != nil %>
@@ -18,6 +19,7 @@
 			<p>Made by: <%= d.user.name %></p>
 		</div>
 	</div>
+	<%end%>
 <% end %>
 </div>
 <div id="content_right">
