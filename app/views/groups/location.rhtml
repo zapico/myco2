@@ -1,0 +1,34 @@
+<div id="content_left">
+<h1 class="welcome"><%= @group.name%></h1>
+<p>Next trips for the group members:</p>
+
+<% @nextrips.each do |d| %>
+	<% if @group.users.exists?(d.user_id) then %>
+	<div class="emission">
+		<div class="picture">
+			<% if d.source.picture != nil %>
+			<%= image_tag d.source.picture  %>
+			<% end %>
+		</div>
+		<div class="co2">
+			<br/><p><%= d.user.name %> will travel from <b><%= d.from %></b> to <b><%= d.to %></b> in <%= distance_of_time_in_words(d.date, Time.now) %></p>
+		</div>
+	</div>
+	<%end%>
+<% end %>
+
+</div>
+
+<div id="content_right">
+	<br/><br/><br/>
+	<h1>Current location</h1>	
+	<% @group.users.each do |user| %>
+	
+	<div class="usersmall">
+		<div class="picture"><%= gravatar(user.email, :size => 25)%></div>
+		<div class="info"><b><%= user.name %></b> is in <b><%= position(user.id) %></div>
+	</div>
+	<%end%>
+	<br/>
+	<p1><%= link_to 'Back to group', :action => 'show',:id => @group.id %></p>
+</div>

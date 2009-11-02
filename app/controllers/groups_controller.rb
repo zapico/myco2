@@ -175,6 +175,10 @@ class GroupsController < ApplicationController
     end
   end
   
-
+  # Page where all users actual position is shown
+  def location
+    @group = Group.find(params[:id])
+    @nextrips = DopplrEmission.find(:all, :include  => @group.users, :conditions => ["date > ?",DateTime.now])    
+  end
   
 end

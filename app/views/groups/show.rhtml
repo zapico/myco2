@@ -61,5 +61,7 @@
 		<div class="info"><b><%= user.name %></b></div>
 	</div>
 	<%end%>
+	<br/>
+	<p><%= link_to 'See their location and future trips', :action => 'location',:id => @group.id %></p>
 
 </div>
