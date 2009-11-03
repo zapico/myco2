@@ -98,7 +98,12 @@ class GroupsController < ApplicationController
   # Detailed list of group emissions
   def emissions
     @group = Group.find(params[:id])
+<<<<<<< Updated upstream:app/controllers/groups_controller.rb
     @dopplremissions = DopplrEmission.find(:all, :include  => @group.users, :conditions => ["personal = '0'"])    
+=======
+    
+    @dopplremissions = @group.dopplr_emissions(:all,:conditions => ["personal = '0'"])
+>>>>>>> Stashed changes:app/controllers/groups_controller.rb
     #@dopplremissions = DopplrEmission.find(:all, :include  => @group.users, :conditions => ["personal = '0'"])    
       
   end
