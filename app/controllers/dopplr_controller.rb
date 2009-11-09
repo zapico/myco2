@@ -12,7 +12,7 @@ class DopplrController < ApplicationController
   # Link Dopplr Account to OurCO2 using API
   def link
     id = session[:id].to_s
-    url ="http://ourco2.org/dopplr/&userid="+id
+    url ="http://ourco2.org/dopplr/?userid="+id
     redirect_to "https://www.dopplr.com/api/AuthSubRequest?scope=http://www.dopplr.com&next="+url+"&session=1"
   end
   
