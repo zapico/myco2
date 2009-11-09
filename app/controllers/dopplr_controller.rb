@@ -12,7 +12,8 @@ class DopplrController < ApplicationController
   # Link Dopplr Account to OurCO2 using API
   def link
     url ="http://ourco2.org/dopplr/"
-    redirect_to "https://www.dopplr.com/api/AuthSubRequest?scope=http://www.dopplr.com&next="+url
+    id = session[:id].to_s
+    redirect_to "https://www.dopplr.com/api/AuthSubRequest?scope=http://www.dopplr.com&next="+url+"&session=1&userid="+id
   end
   
   # After linking the Dopplr account it saves the token and gives a confirmation to the user
@@ -28,7 +29,7 @@ class DopplrController < ApplicationController
        @token = client.create_session
        
        # Saves it in the user
-       @user = User.find(session[:id])
+       @user = User.find(params[:userid])
        @user.tokendopplr = @token
        @user.save
               
@@ -57,14 +58,10 @@ class DopplrController < ApplicationController
 	  mike = client.traveller
 	  mike.trips.each do |trip|
 		
-		
-		# Check if that trip already exist 
-		if DopplrEmission.find(:first, :conditions => ["date = ?", trip.start.to_date ]) == nil then
-		
 		# Create a new emission
 		emission = DopplrEmission.new
 		# Add trip id
-		emission.trip = trip.id
+		emission.trip = trip.id.to_s
 		# Add user id
 		emission.user_id = user.id
 		emission.date = trip.start.to_date
@@ -137,9 +134,10 @@ class DopplrController < ApplicationController
 	  		emission.co2 = co2
 	  	   	emission.source = Source.find(7)
 	  	end  	
-	  	
-	  emission.save
-		
+	     # Check if that trip already exist 
+    if DopplrEmission.find(:first, :conditions => {:date => emission.date, :from => emission.from }) == nil then	
+	     emission.save
+		end
 	  	# Calculate return
 		  # Check where the user is the day after
 		  finishdate = trip.finish.to_date + 1.day
@@ -241,11 +239,10 @@ class DopplrController < ApplicationController
 	  			returnemission.co2 = co2
 	  	   		returnemission.source = Source.find(7)
 		  	end  
-		returnemission.save
-        	
+		if DopplrEmission.find(:first, :conditions => {:date => returnemission.date, :from => returnemission.from }) == nil then
+      returnemission.save
+    end
 		end
-	  #finish if	
-	  end	  
 	  #finish each
 	  end
 	  redirect_to :controller => 'users', :action => "profile"
@@ -410,7 +407,7 @@ class DopplrController < ApplicationController
 			# Aggregate information for return
 			@km += distancekm
 			@totalco2 += co2
-			@trips = @trips + " From " + namestart + " to " + namefinish + " was "+ distancekm.round.to_s + " Km. By: " + trip.return_transport + " and emitted "+ co2.round.to_s + " Kg CO2. <br><br><br>"
+			@trips = @trips + " From " + namestart + " to " + namefinish + " was "+ distancekm.round.to_s + " Km. By: " + trip.return_transport + " and emitted "+ co2.round.to_s + " Kg CO2" + trip.id.to_s + "<br><br><br>"
 
 		end
 	  	

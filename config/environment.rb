@@ -65,5 +65,4 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
   
-   config.gem 'whenever', :lib => false, :source => 'http://gemcutter.org/'
 end
