@@ -12,7 +12,7 @@ class DopplrController < ApplicationController
   # Link Dopplr Account to OurCO2 using API
   def link
     url ="http://ourco2.org/dopplr/"
-    redirect_to "https://www.dopplr.com/api/AuthSubRequest?scope=http://www.dopplr.com&next="+url+"&session=1"
+    redirect_to "https://www.dopplr.com/api/AuthSubRequest?scope=http://www.dopplr.com&next="+url
   end
   
   # After linking the Dopplr account it saves the token and gives a confirmation to the user
@@ -30,7 +30,7 @@ class DopplrController < ApplicationController
        # Saves it in the user
        @user = User.find(session[:id])
        @user.tokendopplr = @token
-       @user.update_attributes(params[:user])
+       @user.save
               
     end
   end
