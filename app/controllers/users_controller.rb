@@ -6,7 +6,7 @@
 
 class UsersController < ApplicationController
   before_filter :authorize, :only => [:edit, :destroy, :account, :changepassword, :profile]
-  before_filter :authorize_admin, :only => [:list, :delete, :resetpassword, :adminpasswords, :editadmin, :administration]
+  before_filter :authorize_admin, :only => [:list, :delete, :admin_password, :adminpasswords, :editadmin, :administration]
   
     def login
       reset_session
@@ -210,19 +210,21 @@ class UsersController < ApplicationController
     @habits = @user.peir_emissions(:all, :condition=>["habit != '0'"])
   end
   
-  # Password management
+  # Change the password of the active user
   def changepassword
         flash[:notice] = ""
         @user = User.find(session[:id])
         if request.post? and @user.update_attributes(params[:user])
-            redirect_to(:action => 'account')
+            redirect_to(:action => 'profile')
         end
   end
-  def resetpassword
+  
+  # Change the password of any user as an administrator
+  def admin_password
         flash[:notice] = ""
         @user = User.find(params[:id])
         if request.post? and @user.update_attributes(params[:user])
-            redirect_to :action => 'adminpasswords'
+            redirect_to :action => 'list'
         end
   end
   

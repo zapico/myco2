@@ -4,7 +4,7 @@
 	<p>
 	<b><%= user.name%></b>
 	<%= link_to "Edit", :action=> 'editadmin', :id => user %>
-	<%= link_to "Change password", :action=> 'editadmin', :id => user %>
+	<%= link_to "Change password", :action=> 'admin_password', :id => user %>
 	<% if user.tokendopplr then %>
 		<%= link_to "Refresh Dopplr", :controller => 'dopplr', :action=> 'getdata', :id => user %>
 	<%end%>

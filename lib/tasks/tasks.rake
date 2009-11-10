@@ -99,7 +99,7 @@ task(:refresh_dopplr => :environment) do
           emission.source = Source.find(7)
       end   
        # Check if that trip already exist 
-    if DopplrEmission.find(:first, :conditions => {:date => emission.date, :from => emission.from }) == nil then  
+    if DopplrEmission.find(:first, :conditions => {:date => emission.date, :from => emission.from, :user_id => user.id }) == nil then  
        emission.save
     end
       # Calculate return
@@ -200,7 +200,7 @@ task(:refresh_dopplr => :environment) do
           returnemission.co2 = co2
             returnemission.source = Source.find(7)
         end  
-    if DopplrEmission.find(:first, :conditions => {:date => returnemission.date, :from => returnemission.from }) == nil then
+    if DopplrEmission.find(:first, :conditions => {:date => returnemission.date, :from => returnemission.from, :user_id => user.id }) == nil then
       returnemission.save
     end
     end

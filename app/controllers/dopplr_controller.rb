@@ -92,7 +92,7 @@ class DopplrController < ApplicationController
 		
 		a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos( 3.141592653589793238462643383298 * lat / 180) * Math.cos(3.141592653589793238462643383298 * trip.city.latitude/ 180) * Math.sin(dLon/2) * Math.sin(dLon/2)
 	  	
-	  	c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+	  c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
 	  	distancekm = 6371 * c
 	  	
 	  	#Add emission km
@@ -134,14 +134,17 @@ class DopplrController < ApplicationController
 	  		emission.co2 = co2
 	  	   	emission.source = Source.find(7)
 	  	end  	
-	     # Check if that trip already exist 
-    if DopplrEmission.find(:first, :conditions => {:date => emission.date, :from => emission.from }) == nil then	
+	  
+    # Check if that trip already exist 
+    if DopplrEmission.find(:first, :conditions => {:date => emission.date, :from => emission.from, :user_id => user.id }) == nil then	
 	     emission.save
 		end
-	  	# Calculate return
-		  # Check where the user is the day after
-		  finishdate = trip.finish.to_date + 1.day
-  		finishplace = client.get('location_on_date', :date => finishdate)['location']
+	  
+    # Calculate return
+		# Check where the user is the day after
+		
+    finishdate = trip.finish.to_date + 1.day
+    finishplace = client.get('location_on_date', :date => finishdate)['location']
 		
       if finishplace.has_key?('trip')
   			# If the user is traveling then check if it's the same location as the departure city from the previous trip
@@ -239,7 +242,7 @@ class DopplrController < ApplicationController
 	  			returnemission.co2 = co2
 	  	   		returnemission.source = Source.find(7)
 		  	end  
-		if DopplrEmission.find(:first, :conditions => {:date => returnemission.date, :from => returnemission.from }) == nil then
+		if DopplrEmission.find(:first, :conditions => {:date => returnemission.date, :from => returnemission.from, :user_id => user.id }) == nil then
       returnemission.save
     end
 		end
